@@ -43,7 +43,7 @@ CImg comes provided with LibJPEG.
 <h3>Initial Testing</h3>
 My first pass was a quick batch file timing test, using <code>%time%</code>. This gave me 100s of a second approximate run timing, the important thing to the user experience. Testing was limited to 24-bpp JPEG images which did not cause problems for jpeglib (more later) or CImg. I used 17 images with a total file size of 26.8MB, on a local SSD hard drive. Here is a typical runtime:
 
-<table cellpadding="2">
+<table style="margin:0px auto; width:400px">
 <tr><td>LibJPEG</td><td>11.5s</td></tr>	
 <tr><td>GDI+</td><td>7.9s</td></tr>  
 <tr><td>WIC</td><td>7.9s</td></tr>
@@ -62,7 +62,7 @@ Next step was to add timing code in the application proper. Using GetTickCount64
 <p>
 Repeating the quick batch file timing test, the internal timings from a typical run was as follows:
 </p>
-<table style="margin:0px auto; width:500px">
+<table style="margin:0px auto; width:400px">
 <tr><th></th><th>Load</th><th>PHash</th></tr>	
 <tr><td>LibJPEG</td><td>2.9</td><td>9.4</td></tr>
 <tr><td>GDI+</td><td>1.2</td><td>7.8</td></tr>
@@ -76,7 +76,7 @@ Moving on using only LibJPEG, GDI+, and WIC ...
 <p>
 The next stage of testing used 1,060 Jpeg images, consuming 1.28GB of disk space. All were 24bpp and didn't cause any hiccups during loading. Again, running locally with all images on a SSD hard drive. Using the internal timings, an average pixel load time was:
 </p>
-<table>
+<table style="margin:0px auto; width:400px">
 <tr><td>LibJPEG</td><td>112s</td></tr>	
 <tr><td>GDI+</td><td>50s</td></tr>	
 <tr><td>WIC</td><td>46s</td></tr>	
@@ -85,9 +85,12 @@ This is consistent with the quick test runs: GDI+ is starting to look like a win
 <p>
 Having been burnt once already relying on gut feel, I decided I better test my "typical" scenario: running the applicaton against files served across my local network. The same set of files were copied to a remote platter hard drive and accessed via a mapped network drive. Typical pixel load timings were:
 </p>
-LibJPEG	175s
-GDI+	225s
-WIC	177s
+<table style="margin:0px auto; width:400px">
+<tr><td>LibJPEG</td><td>175s</td></tr>	
+<tr><td>GDI+</td><td>225s</td></tr>	
+<tr><td>WIC</td><td>177s</td></tr>	
+</table>
+
 ... and now I'm completely boggled. GDI+ is no longer the winner. LibJPEG is back in the running.
 
 <h3>Conclusions</h3>
@@ -97,24 +100,29 @@ Taking pros/cons into account (see below) I'm inclined to try using WIC for all-
 
 <h3>Pros / Cons</h3>
 <table>
-<tr><td>LibJPEG</td><td>Cross-platform; Open source; Good network performance; simple memory</td><td>JPEG only; Library required; Poor error handling</td></tr>	
-<tr><td>GDI+</td><td>Better error handling; Simple code; Good local performance; multi-format</td><td>Windows-only; closed source; not latest; poor network performance; more complex memory</td></tr>	
-<tr><td>WIC</td><td>Better error handling; Good performance; multi-format; newest</td><td>Windows-only; closed source; somewhat complex code; more complex memory</td></tr>	
-<tr><td>WPF</td><td></td><td></td></tr>	
+<tr><td>LibJPEG</td><td>Cross-platform; Open source; Good network performance; simple memory model</td><td>JPEG only; Library required; Poor error handling</td></tr>	
+<tr><td>GDI+</td><td>Better error handling; Simple code; Good local performance; multi-format</td><td>Windows-only; closed source; not latest; poor network performance; more complex memory model</td></tr>	
+<tr><td>WIC</td><td>Better error handling; Good performance; multi-format; newest</td><td>Windows-only; closed source; somewhat complex code; more complex memory model</td></tr>	
+<tr><td>WPF</td><td>High performance if showing images</td><td>Managed application; complex code; complex memory model</td></tr>	
 </table>
 
-Error handling: LibJPEG - out-of-the-box - will periodically report messages like "Premature end of jpeg file", and may not recover cleanly. Under the sheets, it may throw an exception which is a performance hit.
-Simple code: GDI+ provides the easiest way to load an image and access the pixels:
+<p><strong>Error handling:</strong>LibJPEG - out-of-the-box - will periodically report messages like "Premature end of jpeg file", and may not recover cleanly. Under the sheets, it may throw an exception which is a performance hit. GDI+ and WIC will typically recover from 'error' images.</p>
+<p><strong>Simple code:</strong> GDI+ provides the easiest way to load an image and access the pixels:
+<code>
 	Bitmap *gdiBmp = new Bitmap(filename);
 	bm->LockBits(&rc, ImageLockModeRead, PixelFormat32bppARGB, &dataSrc);
 	BYTE * pStartSrc = (BYTE *)dataSrc.Scan0;
+</code></p>
 LibJPEG requires importing a library, and for WIC, jumping through a bunch of COM hoops.
-Complex memory: GDI+, WIC both allocate pixel buffers on aligned boundaries. To access the pixel buffer requires taking the stride into account. LibJPEG has no such complication.
-Formats: GDI+/WIC both support BMP, PNG, JPEG, TIFF. WIC can support other formats if codecs are installed.
-The Code
-...
-Resources
-...
+<p><strong>Complex memory model:</strong> GDI+, WIC both allocate pixel buffers on aligned boundaries. To access the pixel buffer requires taking the stride into account. LibJPEG has no such complication.</p>
+<p><strong>Formats:</strong> GDI+/WIC both support BMP, PNG, JPEG, TIFF. WIC can support other formats if codecs are installed.</p>
+
+<h3>The Code</h3>
+<strong>TBD</strong>
+
+<h3>Resources</h3>
+<strong>TBD</strong>
+
 
       </section>
     </div>

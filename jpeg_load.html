@@ -24,16 +24,17 @@
       <section id="main_content" class="inner">
 
 <h3>TL;DR:</h3>
-There is no strong contender for loading JPEGs on Windows. Your choice depends on your requirements. Pixel load/access might not even be your hotspot: measure and verify!
+There is no strong contender for Natively loading JPEGs on Windows. Your choice depends on your requirements. Pixel load/access might not even be your hotspot: measure and verify!
 <p>GDI+ is easiest, supports multiple image formats, and gives good performance locally.</p>
-<p>
-WIC is "latest and greatest", supports multiple image formats, and gives good performance across the network. The extra code complexity might be daunting.</p>
+<p>WIC is "latest and greatest", supports multiple image formats, and gives good performance across the network. The extra code complexity might be daunting.</p>
 <p>LibJPEG is a valid contender for network performance, if JPEG is your only format and you can fix the limitations.</p>
 
 <h3>The Goal</h3>
 I work with image files a lot. Much of the time is basic viewing and manipulation, but sometimes I want to get down-and-dirty to the pixel level. On the Windows desktop, there are multiple choices for loading image files and fetching pixel data. I wanted to understand the performance impact of each choice.
-The choices I investigated are LibJPEG, GDI+, WPF, and the Windows Imaging Component (WIC).
-This is not the same as displaying images or manipulating them via Windows image functions. WPF and Direct2D are the current tools-of-choice for display manipulation.
+<p>The choices I investigated are LibJPEG, GDI+, WPF, and the Windows Imaging Component (WIC).</p>
+<p>My assumption is the Windows libraries are much faster than LibJPEG.</p>
+<p>Note: This is not the same as displaying images or manipulating them via Windows image functions: WPF and Direct2D are the current tools-of-choice for display manipulation.</p>
+
 <h3>The Application</h3>
 The application under test is an implementation of the "perceptual hash" (phash). Specifically, a Windows port of v0.9.4 of  the open source perceptual hash library. (www.phash.org)
 pHash is a perceptual hashing library that allows you to find similar media files without them having to be bit-for-bit identical.
@@ -51,25 +52,23 @@ My first pass was a quick batch file timing test, using <code>%time%</code>. Thi
 </table>
 
 <strong>WHAT</strong> is going on with WPF?!? WPF is the oddball of the bunch, being essentially a Managed wrapper around WIC. To use WPF, I chose to toggle on /clr and build essentially a Managed C++ application. My assumptions were: WPF was slower accessing the image pixels, as it asks WIC for the buffer (native), converts to a managed type, then the application converts back to native.
-<p>
-Next step was to add timing code in the application proper. Using GetTickCount64() I was able to get millisecond timing for the steps of interest:
-<p>
+<p>Next step was to add timing code in the application proper. Using GetTickCount64() I was able to get millisecond timing for the steps of interest:</p>
 
 <ol>
 <li>Open the image, access the pixels, convert to CImg</li>
 <li>Calculate the perceptual hash value</li>
 </list>
-<p>
-Repeating the quick batch file timing test, the internal timings from a typical run was as follows:
-</p>
+
+<p>Repeating the quick batch file timing test, the internal timings from a typical run was as follows:</p>
+
 <table style="margin:0px auto; width:400px">
-<tr><th></th><th>Load</th><th>PHash</th></tr>	
+<tr><td></td><td><strong>Load</strong></td><td><strong>PHash</strong></td></tr>	
 <tr><td>LibJPEG</td><td>2.9</td><td>9.4</td></tr>
 <tr><td>GDI+</td><td>1.2</td><td>7.8</td></tr>
 <tr><td>WIC</td><td>1.1</td><td>7.8</td></tr>
 <tr><td>WPF</td><td>1.9</td><td>64</td></tr>
 </table>
-This quickly demonstrates the value of testing, rather than relying on gut feel! Yes, WPF load times are slower, but the processing time has been seriously broken! At this point, I set WPF aside as an option. Having to introduce Managed C++ has negatively impacted the application as a whole, and the WPF load time is lower than GDI+ or WIC. Reworking the application so the Managed C++ was limited to a separate DLL might mitigate some of the problems, yet that is not the goal and thus I'm done with WPF.
+<p>This quickly demonstrates the value of testing, rather than relying on gut feel! Yes, WPF load times are slower, but the processing time has been seriously broken! At this point, I set WPF aside as an option. Having to introduce Managed C++ has negatively impacted the application as a whole, and the WPF load time is lower than GDI+ or WIC. Reworking the application so the Managed C++ was limited to a separate DLL might mitigate some of the problems, yet that is not the goal and thus I'm done with WPF.</p>
 
 <h3>Second Stage Testing</h3>
 Moving on using only LibJPEG, GDI+, and WIC ...
@@ -91,12 +90,12 @@ Having been burnt once already relying on gut feel, I decided I better test my "
 <tr><td>WIC</td><td>177s</td></tr>	
 </table>
 
-... and now I'm completely boggled. GDI+ is no longer the winner. LibJPEG is back in the running.
+... and now I'm completely boggled. GDI+ is no longer a winner. LibJPEG is back in the running.
 
 <h3>Conclusions</h3>
 You may have noticed that I stopped showing the phash calculation times. The timings started to vary radically, which is confusing, as the code "should" be equivalent across the three variants. I expect some variation due to CPU load, memory load, etc. However, some runs were showing a 10%-20% discrepancy.
-Despite the discrepancies, the phash calculation time was typically 275s - 400s in second stage testing. In other words, at worst, pixel load time is only 50% of the phash application run time, and at best only 20%. Optimizing the  phash calculation should be the first goal. Also, this application is CPU-bound and run times would benefit from parallel computing on a multi-core system.
-Taking pros/cons into account (see below) I'm inclined to try using WIC for all-around benefits, caveat being if I can create a clean abstraction and handle edge cases. LibJPEG is a strong contender if you are working cross-platform and don't need other image formats; using TurboJPEG may provide a win (future article).
+<p>Despite the discrepancies, the phash calculation time was typically 275s - 400s in second stage testing. In other words, <em>at worst</em>, pixel load time is only 50% of the phash application run time, and <em>at best</em> only 20%! Optimizing the  phash calculation should be the first goal. Also, this application is CPU-bound and run times would benefit from parallel computing on a multi-core system.</p>
+<p>Taking pros/cons into account (see below) I'm inclined to try using WIC for all-around benefits, caveat being if I can create a clean abstraction and handle edge cases. LibJPEG is a strong contender if you are working cross-platform and don't need other image formats; using TurboJPEG may provide a win (future article).</p>
 
 <h3>Pros / Cons</h3>
 <table>
@@ -106,14 +105,16 @@ Taking pros/cons into account (see below) I'm inclined to try using WIC for all-
 <tr><td>WPF</td><td>High performance if showing images</td><td>Managed application; complex code; complex memory model</td></tr>	
 </table>
 
-<p><strong>Error handling:</strong>LibJPEG - out-of-the-box - will periodically report messages like "Premature end of jpeg file", and may not recover cleanly. Under the sheets, it may throw an exception which is a performance hit. GDI+ and WIC will typically recover from 'error' images.</p>
+<p><strong>Error handling:</strong>Out-of-the-box, LibJPEG will periodically report messages like "Premature end of jpeg file", and may not recover cleanly. Under the sheets, it may throw an exception which is a performance hit. GDI+ and WIC will typically recover from 'error' images.</p>
 <p><strong>Simple code:</strong> GDI+ provides the easiest way to load an image and access the pixels:
-<code>
+</p>
+<pre>
 	Bitmap *gdiBmp = new Bitmap(filename);
 	bm->LockBits(&rc, ImageLockModeRead, PixelFormat32bppARGB, &dataSrc);
 	BYTE * pStartSrc = (BYTE *)dataSrc.Scan0;
-</code></p>
-LibJPEG requires importing a library, and for WIC, jumping through a bunch of COM hoops.
+</pre>
+<p>
+LibJPEG requires importing a library, and for WIC, jumping through a bunch of COM hoops.</p>
 <p><strong>Complex memory model:</strong> GDI+, WIC both allocate pixel buffers on aligned boundaries. To access the pixel buffer requires taking the stride into account. LibJPEG has no such complication.</p>
 <p><strong>Formats:</strong> GDI+/WIC both support BMP, PNG, JPEG, TIFF. WIC can support other formats if codecs are installed.</p>
 

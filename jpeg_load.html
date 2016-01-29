@@ -56,13 +56,14 @@ Next step was to add timing code in the application proper. Using GetTickCount64
 <p>
 
 <ol>
-<li>1) Open the image, access the pixels, convert to CImg</li>
-<li>2) Calculate the perceptual hash value</li>
+<li>Open the image, access the pixels, convert to CImg</li>
+<li>Calculate the perceptual hash value</li>
 </list>
-
+<p>
 Repeating the quick batch file timing test, the internal timings from a typical run was as follows:
-<table border="1" align="center">
-<th><td>Load</td><td>PHash</td></th>	
+</p>
+<table style="margin:0px auto; width:500px">
+<tr><th></th><th>Load</th><th>PHash</th></tr>	
 <tr><td>LibJPEG</td><td>2.9</td><td>9.4</td></tr>
 <tr><td>GDI+</td><td>1.2</td><td>7.8</td></tr>
 <tr><td>WIC</td><td>1.1</td><td>7.8</td></tr>
@@ -75,9 +76,11 @@ Moving on using only LibJPEG, GDI+, and WIC ...
 <p>
 The next stage of testing used 1,060 Jpeg images, consuming 1.28GB of disk space. All were 24bpp and didn't cause any hiccups during loading. Again, running locally with all images on a SSD hard drive. Using the internal timings, an average pixel load time was:
 </p>
-LibJPEG	112s
-GDI+	50s
-WIC	46s
+<table>
+<tr><td>LibJPEG</td><td>112s</td></tr>	
+<tr><td>GDI+</td><td>50s</td></tr>	
+<tr><td>WIC</td><td>46s</td></tr>	
+</table>
 This is consistent with the quick test runs: GDI+ is starting to look like a winner, giving good performance with code simplicity (more later).
 <p>
 Having been burnt once already relying on gut feel, I decided I better test my "typical" scenario: running the applicaton against files served across my local network. The same set of files were copied to a remote platter hard drive and accessed via a mapped network drive. Typical pixel load timings were:

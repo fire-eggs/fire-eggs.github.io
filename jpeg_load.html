@@ -40,29 +40,31 @@ CImg comes provided with LibJPEG.
 <h3>Initial Testing</h3>
 My first pass was a quick batch file timing test, using <code>%time%</code>. This gave me 100s of a second approximate run timing, the important thing to the user experience. Testing was limited to 24-bpp JPEG images which did not cause problems for jpeglib (more later) or CImg. I used 17 images with a total file size of 26.8MB, on a local SSD hard drive. Here is a typical runtime:
 
-<table>
+<table cellpadding="2">
 <tr><td>LibJPEG</td><td>11.5s</td></tr>	
 <tr><td>GDI+</td><td>7.9s</td></tr>  
 <tr><td>WIC</td><td>7.9s</td></tr>
 <tr><td>WPF</td><td>64.5s</td></tr>
 </table>
 
-<b>WHAT</b> is going on with WPF?!? WPF is the oddball of the bunch, being essentially a Managed wrapper around WIC. To use WPF, I chose to toggle on /clr and build essentially a Managed C++ application. My assumptions were: WPF was slower accessing the image pixels, as it asks WIC for the buffer (native), converts to a managed type, then the application converts back to native.
+*WHAT* is going on with WPF?!? WPF is the oddball of the bunch, being essentially a Managed wrapper around WIC. To use WPF, I chose to toggle on /clr and build essentially a Managed C++ application. My assumptions were: WPF was slower accessing the image pixels, as it asks WIC for the buffer (native), converts to a managed type, then the application converts back to native.
 <p>
 Next step was to add timing code in the application proper. Using GetTickCount64() I was able to get millisecond timing for the steps of interest:
 <p>
 
-<list>
+<ol>
 <li>1) Open the image, access the pixels, convert to CImg</li>
 <li>2) Calculate the perceptual hash value</li>
 </list>
 
 Repeating the quick batch file timing test, the internal timings from a typical run was as follows:
-	Load	PHash
-LibJPEG 2.9	9.4
-GDI+ 	1.2	7.8
-WIC 	1.1	7.8
-WPF	1.9	64
+<table>
+<th><td>Load</td><td>PHash</td></th>	
+<tr><td>LibJPEG</td><td>2.9</td><td>9.4</td></tr>
+<tr><td>GDI+</td><td>1.2</td><td>7.8</td></tr>
+<tr><td>WIC</td><td>1.1</td><td>7.8</td></tr>
+<tr><td>WPF</td><td>1.9</td><td>64</td></tr>
+</table>
 This quickly demonstrates the value of testing, rather than relying on gut feel! Yes, WPF load times are slower, but the processing time has been seriously broken! At this point, I set WPF aside as an option. Having to introduce Managed C++ has negatively impacted the application as a whole, and the WPF load time is lower than GDI+ or WIC. Reworking the application so the Managed C++ was limited to a separate DLL might mitigate some of the problems, yet that is not the goal and thus I'm done with WPF.
 Second Stage Testing
 Moving on using only LibJPEG, GDI+, and WIC ...

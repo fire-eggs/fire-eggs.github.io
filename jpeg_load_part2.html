@@ -25,6 +25,8 @@
 
 <h3>TL;DR:</h3>
 When Natively loading JPEGs on Windows, the libJpeg-turbo library is on average the fastest.
+Running multi-threaded, GDI+ is "close enough", especially if more image formats need to be
+supported.
 <p>
 
 <h3>Measuring More Libraries</h3>
@@ -82,8 +84,20 @@ As the application is CPU-bound, the next step is to use parallelism. The suppor
 <tr><td>GDI+</td>  <td>270.02</td> <td>101.39</td>	<td>442.02</td>	<td>208.19</td></tr>
 <tr><td>Orig</td>  <td>328.42</td> <td>119.97</td>	<td>389.43</td>	<td>207.92</td></tr>
 </table>
+<p>At this time, my WIC implementation is not parallel friendly.</p>
+<p>The application happily maxed out all 8 cores on my system when running parallel. As you can see,
+using parallelism cut the application runtime by <italic>more than half</italic> all across the board. Looking
+at the numbers, you can also see the choice of JPEG library makes little difference in the overall runtime.
+</p>
 
 <h3>Conclusion</h3>
+<p>
+In my testing, LibJpeg-Turbo and JPEGLib V9b are tied, especially for my typical scenario;
+JPEGLib V9b may have a tiny edge. When running in parallel, GDI+ is only a few seconds 
+behind for 1,000 images. The ability to handle more than just JPEGs makes GDI+ a
+strong contender.
+<p>
+For this CPU-bound application, parallel computing is the big winner.
 
 <h3>The Code</h3>
 <strong>TBD</strong>

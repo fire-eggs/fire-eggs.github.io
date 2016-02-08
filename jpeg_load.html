@@ -42,7 +42,9 @@ pHash is a perceptual hashing library that allows you to find similar media file
 CImg comes provided with LibJPEG.
 
 <h3>Initial Testing</h3>
+<p>
 My first pass was a quick batch file timing test, using <code>%time%</code>. This gave me 100s of a second approximate run timing, the important thing to the user experience. Testing was limited to 24-bpp JPEG images which did not cause problems for jpeglib (more later) or CImg. I used 17 images with a total file size of 26.8MB, on a local SSD hard drive. Here is a typical runtime:
+</p>
 
 <table style="margin:0px auto; width:400px">
 <tr><td>LibJPEG</td><td>11.5s</td></tr>	
@@ -51,13 +53,14 @@ My first pass was a quick batch file timing test, using <code>%time%</code>. Thi
 <tr><td>WPF</td><td>64.5s</td></tr>
 </table>
 
+<p>
 <strong>WHAT</strong> is going on with WPF?!? WPF is the oddball of the bunch, being essentially a Managed wrapper around WIC. To use WPF, I chose to toggle on /clr and build essentially a Managed C++ application. My assumptions were: WPF was slower accessing the image pixels, as it asks WIC for the buffer (native), converts to a managed type, then the application converts back to native.
 <p>Next step was to add timing code in the application proper. Using GetTickCount64() I was able to get millisecond timing for the steps of interest:</p>
 
 <ol>
 <li>Open the image, access the pixels, convert to CImg</li>
 <li>Calculate the perceptual hash value</li>
-</list>
+</ol>
 
 <p>Repeating the quick batch file timing test, the internal timings from a typical run was as follows:</p>
 
@@ -73,13 +76,18 @@ My first pass was a quick batch file timing test, using <code>%time%</code>. Thi
 <h3>Second Stage Testing</h3>
 Moving on using only LibJPEG, GDI+, and WIC ...
 <p>
-The next stage of testing used 1,060 Jpeg images, consuming 1.28GB of disk space. All were 24bpp and didn't cause any hiccups during loading. Again, running locally with all images on a SSD hard drive. Using the internal timings, an average pixel load time was:
+The next stage of testing used 1,057 Jpeg images, consuming 1.28GB of disk space, at an average of
+1,272K per image. All were 24bpp and didn't cause any hiccups during loading. Again, running locally 
+with all images on a SSD hard drive. The smallest image is 260 by 400; the largest: 12,143 by 4,515.
+<p>
+Using the internal timings, an average pixel load time was:
 </p>
 <table style="margin:0px auto; width:400px">
 <tr><td>LibJPEG</td><td>112s</td></tr>	
 <tr><td>GDI+</td><td>50s</td></tr>	
 <tr><td>WIC</td><td>46s</td></tr>	
 </table>
+<p>
 This is consistent with the quick test runs: GDI+ is starting to look like a winner, giving good performance with code simplicity (more later).
 <p>
 Having been burnt once already relying on gut feel, I decided I better test my "typical" scenario: running the applicaton against files served across my local network. The same set of files were copied to a remote platter hard drive and accessed via a mapped network drive. Typical pixel load timings were:
@@ -90,6 +98,7 @@ Having been burnt once already relying on gut feel, I decided I better test my "
 <tr><td>WIC</td><td>177s</td></tr>	
 </table>
 
+<p>
 ... and now I'm completely boggled. GDI+ is no longer a winner. LibJPEG is back in the running.
 
 <h3>Conclusions</h3>

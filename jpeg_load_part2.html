@@ -40,6 +40,38 @@ When Natively loading JPEGs on Windows, the libJpeg-turbo library is on average 
 <h4>LibJpeg-Turbo</h4>
 
 <h3>Testing</h3>
+<p>
+  Here are the results. These are internal timings only, average of three runs. All times in seconds.
+</p>
+
+<table style="margin:0px auto; width:400px">
+  <tr><td></td><td colspan="2">Quick</td><td colspan="2">Local</td><td colspan="2">Network</td></tr>
+  <tr><td>Which</td><td>Load</td><td>PHash</td><td>Load</td><td>PHash</td><td>Load</td><td>PHash</td></tr>
+  <tr><td>Jpeg 6.2</td><td>2.6</td><td></td><td>109.7</td><td></td><td>169.1</td><td></td></tr>
+  <tr><td>GDI+</td>    <td>1.1</td><td></td><td>50.2</td><td></td><td>227.4</td><td></td></tr>
+  <tr><td>WIC</td>     <td>1.0</td><td></td><td>46.4</td><td></td><td>170.3</td><td></td></tr>
+  <tr><td>Jpeg 9b</td> <td>1.3</td><td></td><td>54.0</td><td></td><td>158.7</td><td></td></tr>
+  <tr><td>Turbo</td>   <td>0.7</td><td></td><td>33.0</td><td></td><td>154.3</td><td></td></tr>
+</table>
+
+<ul><li><strong>Quick:</strong> Loading the small set of files from a local SSD.</li>
+<li><strong>Local:</strong> Loading the large set of files from a local SSD.</li>
+<li><strong>Network:</strong> Loading the large set of files from a remote HD.</li>
+</ul>
+
+<h3>Parallelism</h3>
+<p>
+As the application is CPU-bound, the next step is to use parallelism. The support for OpenMP is pretty straightforward to apply. The changes are:
+</p>
+<ol>
+<li><code>#include "omp.h"</code></li>
+<li>When iterating the file tree, gather the filenames into a list rather than process immediately.</li>
+<li>Process the list of filenames in a loop, along with the <code>#pragma omp parallel for</code></li>
+<li>Enable OpenMP settings in the project.</li>
+</ol>
+<p>This does add a dependency on vcomp120.dll.</p>
+<p>And the numbers ...</p>
+<img src="../images/AppRuntimes.png" alt="graph">
 
 <h3>Conclusion</h3>
 

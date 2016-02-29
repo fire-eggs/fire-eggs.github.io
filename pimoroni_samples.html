@@ -6,7 +6,7 @@
     <meta name="description" content="Fire-eggs.GitHub.io : ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>Windows JPEG Load Performance</title>
+    <title>New Samples for the Display-o-Tron HAT</title>
   </head>
 
 <body>
@@ -23,19 +23,33 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 
-The Pimoroni Display-o-tron HAT is an add-on board for the Raspberry Pi. For details, see <a href="https://shop.pimoroni.com/products/display-o-tron-hat">Pimoroni</a>.
+The Pimoroni Display-o-tron HAT is an add-on board for the Raspberry Pi. The board has a nice
+RGB backlit LCD, some LEDs, and touchpad. For details, see <a href="https://shop.pimoroni.com/products/display-o-tron-hat">Pimoroni Shop</a>.
 <p>
-Digging into the Python libraries provided () I found a few "hidden" features of the board. "Hidden" in the sense the components of the board
-support/provide these capabilities, but the samples don't demonstrate them.
+Digging into the Python libraries provided (<a href="https://github.com/pimoroni/dot3k">dot3k</a>) I found a few "hidden" features of 
+the board. "Hidden" in the sense the components of the board support/provide these capabilities, but the official samples don't 
+demonstrate them.
 <p>
-The following Python scripts show off a few of these "hidden" features.
+The following Python scripts show off a few of these "hidden" features. I have tried to write these in the "style" of the official
+Pimoroni samples.
 <p>
-"Dancing Text:
+<ul>
+  <li><a href="#dance">Dancing Text</a></li>
+  <li><a href="#doublehigh">Double-height text</a></li>
+  <li><a href="#march">Marching Hue</a></li>
+</ul>
+
+<p><a name="dance"></a>
+"Dancing" Text:
 <script src="https://gist.github.com/fire-eggs/3e2beeb6aee42b324b4d.js"></script>
 
+<a name="doublehigh"></a>
 Double-height Text:
 
+<p>
+<a name="march"></a>
 Individual Backlight LED control:
+<script src="https://gist.github.com/fire-eggs/996778c5133b8a67f210.js"></script>
 
       </section>
     </div>

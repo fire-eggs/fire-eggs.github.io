@@ -1,0 +1,87 @@
+<BODY scroll=auto><P><!-- HEADER --></P>
+<DIV id=header_wrap class=outer><HEADER class=inner><A id=forkme_banner href="https://github.com/fire-eggs">View on GitHub</A> 
+<H1 id=project_title>Windows JPEG Load Performance</H1></HEADER></DIV>
+<P>There are multiple options for loading JPEG files in the Windows desktop "stack". The application (see below) requires accessing the pixel data without displaying the image.</P>
+<P>The application code is Native (not Managed) C++, consisting of a main EXE and a DLL. The image processing is implemented using CImg - The C++ Template Image Processing Toolkit (<A href="http://cimg.sourceforge.net">http://cimg.sourceforge.net</A>). The pixel data loaded from the image is&nbsp;converted to the CImg internal format.<!-- MAIN CONTENT --></P>
+<DIV id=main_content_wrap class=outer>
+<H3>Libraries Measured</H3>
+<OL>
+<LI>JPEGLib V6 - as supplied by the original codebase</LI>
+<LI>JPEGLib V9b - <A href="http://www.ijg.org/files/">http://www.ijg.org/files/</A></LI>
+<LI>LibJpeg-Turbo 1.4.2&nbsp;- <A href="https://sourceforge.net/projects/libjpeg-turbo/files/1.4.2/">https://sourceforge.net/projects/libjpeg-turbo/files/1.4.2/</A></LI>
+<LI>GDI+ - comes with Windows</LI>
+<LI>WIC - comes with Windows</LI>
+<LI>WPF - comes with Windows</LI></OL>
+<H3>Results</H3></DIV>
+<P>Here are the results. The program was processing 1,057 Jpeg images, consuming 1.28GB of disk space, at an average of 1,272K per image. All were 24bpp and didn't cause any hiccups during loading. The smallest image is 260 by 400; the largest: 12,143 by 4,515.</P>
+<P>These are external timings, average of three runs. All times in seconds. </P>
+<P><IMG alt=graph src=""> </P>
+<P>
+<TABLE style="WIDTH: 400px; MARGIN: 0px auto">
+<TBODY>
+<TR>
+<TD>Which</TD>
+<TD>Local</TD>
+<TD>Parallel</TD>
+<TD>Network</TD>
+<TD>Parallel</TD></TR>
+<TR>
+<TD>WIC</TD>
+<TD>264.78</TD>
+<TD>0</TD>
+<TD>391.45</TD>
+<TD>0</TD></TR>
+<TR>
+<TD>Turbo</TD>
+<TD>251.66</TD>
+<TD>94.03</TD>
+<TD>375.99</TD>
+<TD>200.39</TD></TR>
+<TR>
+<TD>Jpeg9</TD>
+<TD>272.59</TD>
+<TD>101.41</TD>
+<TD>380.78</TD>
+<TD>195.28</TD></TR>
+<TR>
+<TD>GDI+</TD>
+<TD>270.02</TD>
+<TD>101.39</TD>
+<TD>442.02</TD>
+<TD>208.19</TD></TR>
+<TR>
+<TD>Jpeg6</TD>
+<TD>328.42</TD>
+<TD>119.97</TD>
+<TD>389.43</TD>
+<TD>207.92</TD></TR></TBODY></TABLE></P>
+<DIV class=outer>
+<UL>
+<LI><STRONG>Local:</STRONG> Loading the files from a local SSD.</LI>
+<LI><STRONG>Network:</STRONG> Loading the files from a remote HD.</LI>
+<LI><STRONG>Parallel</STRONG>: Using OpenMP to load/process files on separate threads.</LI></UL>
+<H3>Library Notes</H3></DIV>
+<P><U>LibJPEG 6</U> : CImg came with the LibJPEG 6 library, so this was tested as the "baseline". It is relatively simple to swap in LibJPEG 9 and LibJPEG-Turbo instead.</P>
+<P><U>LibJPEG 9</U> : The latest release of the LibJPEG library.</P>
+<P><U>LibJPEG-Turbo</U> : The independently optimized version of LibJPEG.</P>
+<P><U>GDI+</U> : The "old" way of loading images on Windows. Comparatively simple to use, caveat being some extra work required to deal with the Microsoft-specific pixel buffer layout. Has the benefit of handling more than just JPEG.</P>
+<P><U>WIC</U> : The "new" way of loading images on Windows. My implementation was not parallel friendly, so could not gather those numbers.</P>
+<P><U>WPF</U> : WPF is essentially a Managed wrapper around WIC. To use WPF, I chose to toggle on /clr and build essentially a Managed C++ application. Having to introduce Managed C++ destroyed performance, so WPF fell by the wayside very quickly.</P>
+<H3 class=outer>
+<H3>Parallelism</H3></H3>
+<P class=outer>As the application is CPU-bound, the next step was to use parallelism. The support for OpenMP is pretty straightforward to apply. The changes are: </P>
+<OL>
+<LI><CODE>#include "omp.h"</CODE></LI>
+<LI>When iterating the file tree, gather the filenames into a list rather than process immediately.</LI>
+<LI>Process the list of filenames in a loop, along with the <CODE>#pragma omp parallel for</CODE></LI>
+<LI>Enable OpenMP settings in the project.</LI></OL>
+<P>This does add a dependency on vcomp120.dll.</P>
+<P>The application happily maxed out all 8 cores on my system when running parallel. Using parallelism potentially cut the application runtime by <EM>more than half</EM>. Looking at the numbers, you can also see the choice of JPEG library makes little difference in the overall runtime.</P>
+<H3 class=outer>Conclusion</H3>
+<P class=outer>In my testing, LibJpeg-Turbo and JPEGLib V9b are tied, especially for my typical scenario; JPEGLib V9b may have a tiny edge. When running in parallel, GDI+ is only a few seconds behind for 1,000 images. The ability to handle more than just JPEGs makes GDI+ a strong contender. 
+<P class=outer>For this CPU-bound application, parallel computing is the big winner. 
+<H3 class=outer>The Application</H3>
+<P class=outer>The application under test is an implementation of the "perceptual hash" (phash). Specifically, a Windows port of v0.9.4 of the open source perceptual hash library (<A href="http://www.phash.org">www.phash.org</A>). pHash is a perceptual hashing library that allows you to find similar media files without them having to be bit-for-bit identical.</P>
+<P class=outer>The code&nbsp;used to convert the Windows&nbsp;bitmap buffer to CImg&nbsp;is from Ken Earle - <A href="http://www.dewtell.com/code/cpp/cimggdip.htm">http://www.dewtell.com/code/cpp/cimggdip.htm</A></P>
+<P class=outer>&nbsp;</P>
+<P>&nbsp;</P></FOOTER></BODY>

@@ -30,6 +30,7 @@ and the mean returns 418746 ???</p>
 <p>Some sanity checking:</p>
 
 <pre>
+#arr = np.ndarray((count,), dtype=np.uint32)
 len(arr): 10303
 np.median(arr): 1370
 np.mean(arr): 418746.462487
@@ -39,7 +40,10 @@ np.sum(arr) / len(arr): 1880.76356401
 
 <p>Yup, I'm insane.</p>
 
-<p>So you can get the correct value with <pre>np.sum(arr) / len(arr)</pre>, or use:</p>
+<p>So you can get the correct value with</p>
+
+<pre>np.sum(arr) / len(arr)</pre> 
+<p>or use:</p>
 
 <pre>np.mean(arr3, dtype="uint32", axis=0): 1880</pre>
 

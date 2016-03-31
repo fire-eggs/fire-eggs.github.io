@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fire-eggs.GitHub.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Numpy mean() Weirdness</title>
+  </head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
+          <h1 id="project_title">Numpy mean() Weirdness</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<p>Using numpy to perform some basic statistics.</p>
+<p>Smacked into a major weirdness with the mean() function. I had an array of uint32s; the median() function returns 1370,
+and the mean returns 418746 ???</p>
+<p>I read on Stack Overflow some confusion or problems using mean() with floats, but these are integers!</p>
+<p>Some sanity checking:</p>
+
+<pre>
+len(arr): 10303
+np.median(arr): 1370
+np.mean(arr): 418746.462487
+np.sum(arr): 19377507
+np.sum(arr) / len(arr): 1880.76356401
+</pre>
+
+<p>Yup, I'm insane.</p>
+
+<p>So you can get the correct value with <pre>np.sum(arr) / len(arr)</pre>, or use:</p>
+
+<pre>np.mean(arr3, dtype="uint32", axis=0): 1880</pre>
+
+<p>As long as you don't care about the fractional part...</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+</body>
+</html>

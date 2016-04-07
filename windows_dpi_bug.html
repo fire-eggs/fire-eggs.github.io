@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fire-eggs.GitHub.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Windows Jpeg DPI Issue</title>
+  </head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
+          <h1 id="project_title">Windows Jpeg DPI Issue</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<h3>The Issue</h3>
+<p>
+Windows has a problem displaying certain JPEG images. This problem typically manifests as
+"Windows Photo Viewer stretches my images". An example of an extreme case:
+</p><p>
+<IMG alt=one-pixel src="../images/win_dpi_extreme.png">
+</p><p>
+There are various threads out in the InterWebs complaining about the issue.
+E.g. <a href="http://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/windows7-photo-viewer-compresses-my-jpgs-to-a/10be5522-2a9b-4644-a42d-c2e5ba2e908b?page=1">here</a>
+, and <a href="http://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/windows-photo-viewer-stretches-my-pictures/41261f20-cf26-49cf-9843-f08f527700a2?page=1">here</a>.
+The problem is not limited to Windows' built-in utilities: it also shows up
+for us image application developers. The reason is the problem is in the Windows
+image libraries apon which many image applications are built.
+</p><p>
+For the typical user, often the problem first showed up when they upgraded from
+Windows XP to a newer version of Windows. The Windows XP utility "Windows Picture and Fax Viewer"
+did not show the problem. The Windows Vista and later utility, "Windows Photo Viewer",
+is impacted by the problem. On Windows 10, the "Photo Gallery" app doesn't have
+the problem, but the "Windows Photo Viewer" on Windows 10 <i>does</i>.
+</p><p>
+For said typical user, there are only two possible solutions:
+</p><p>
+<ol>
+<li>View the images with a different program.
+<li>Fix the images.
+</ol>
+</p><p>
+The InterWebs threads suggest more than one possible cause for the problem.
+I cannot comment regarding the validity of the "incorrect EXIF data" suggestion,
+as I've not encountered any instance of said images. I <i>can</i> however confirm
+that JPEG images with strange DPI encodings will confuse "Windows Photo Viewer",
+and other Microsoft applications.
+
+<h3>The JPEG Standard re DPI</h3>
+<p>
+On page 5 of the JPEG standard (<a href="http://www.w3.org/Graphics/JPEG/jfif3.pdf">here</a>),
+the header is described. Three fields are behind this problem: the Xdensity, Ydensity,
+and units. Here is a screencap of the relevant details (highlighted):
+</P>
+<p>
+<IMG alt=cap src="../images/jpg_standard_cap.png">
+</p>
+<p>
+For unknown reasons, some image editing applications have stored inconsistent,
+or inappropriate, values in those fields. The Windows image libraries attempt to 
+honor those values, usually with poor results.
+</p>
+
+<h3>Fixing Your Code</h3>
+<P>
+You'll never encounter the problem if you always specify the output height and
+width when drawing images (or if you don't have any buggy JPEGs!). But if you
+rely on <pre>System.Windows.Media.Imaging.BitmapImage</pre> or <pre>Graphics.DrawImage</pre>
+to correctly "guess" the destination size of images, the problem will occur.
+By specifying the output dimensions of the image, you force the Image libraries
+to ignore the DPI values <i>inside</i> the image.
+</p>
+<p>
+Example of problematic code (<pre>Graphics.DrawImage</pre>):
+</p>
+<pre>
+Bitmap imageFromFile; // image loaded from a file
+Bitmap destImage;     // image being drawn to
+using (Graphics gg = Graphics.FromImage(destImage))
+{
+	gg.DrawImage(imageFromFile, destX, destY);
+}
+</pre>
+<p>
+and a working version:
+</p>
+<pre>
+Bitmap imageFromFile; // image loaded from a file
+Bitmap destImage;     // image being drawn to
+int destW = imageFromFile.Width; // desired output size
+int destH = imageFromFile.Height; // desired output size
+using (Graphics gg = Graphics.FromImage(destImage))
+{
+	gg.DrawImage(imageFromFile, destX, destY, destW, destH);
+}
+</pre>
+<p>
+Straight from the Microsoft examples, the following WPF fragments will
+display problematic images badly (first the XAML version, then the 
+code-behind variant):
+</p>
+<pre>
+<Image Width="200">
+  <Image.Source>
+    <BitmapImage DecodePixelWidth="200"  
+     UriSource="C:\Documents and Settings\All Users\Documents\My Pictures\Sample Pictures\Water Lilies.jpg" />
+  </Image.Source>
+</Image>
+</pre>
+<p> </p>
+<pre>
+Image myImage = new Image();
+myImage.Width = 200;
+
+// Create source
+BitmapImage myBitmapImage = new BitmapImage();
+
+// BitmapImage.UriSource must be in a BeginInit/EndInit block
+myBitmapImage.BeginInit();
+myBitmapImage.UriSource = new Uri(@"C:\Documents and Settings\All Users\Documents\My Pictures\Sample Pictures\Water Lilies.jpg");
+myBitmapImage.DecodePixelWidth = 200;
+myBitmapImage.EndInit();
+//set image source
+myImage.Source = myBitmapImage;
+</pre>
+<p>
+Irritatingly, I have not found that specifying the <pre>DecodePixelWidth</pre> value 
+solves the problem. 
+</p><p>
+An example of fixed code for WPF is too long to show here. In my projects, I'm using an
+<pre>ImageConverter</pre>, and in that code, performing convolutions to specify the image dimensions.
+See the <pre>BooruTagger</pre> repository, <pre>ImageConverter.cs</pre>.
+</p>
+
+
+<h3>Identifying Problem Images</h3>
+<p>
+In my testing, I have found the following scenarios:
+</p>
+<table>
+<tr>
+<td>units = 0</td>
+<td>No issues</td>
+</tr>
+<tr>
+<td>units = 1; Xdensity or Ydensity is zero</td>
+<td>No issues</td>
+</tr>
+<tr>
+<td>units = 1; Xdensity or Ydensity is 1</td>
+<td>Displays as a very narrow image</td>
+</tr>
+<tr>
+<td>units = 1; Xdensity != Ydensity</td>
+<td>Displays stretched or distorted</td>
+</tr>
+<tr>
+<td>units = 1; Xdensity == Ydensity, value is > 100</td>
+<td>May display tiny (image DPI is > screen DPI of 96)</td>
+</tr>
+</table>
+<p>
+Annoyingly, various tools which might easily identify an image's DPI settings,
+do a poor job. Specifically, Windows Explorer never shows the two values,
+only the one "valid" value. The <pre>identify</pre> program (part of ImageMagick)
+also fails to provide useful data, even in <pre>-verbose</pre> mode.
+</p><p>
+So I wrote my own. The code below is the guts of the "is this a problem image" test:
+</p>
+<pre>
+const int READ_SIZE = 32;
+byte[] bom = new byte[READ_SIZE];
+
+using (FileStream fileStream = File.OpenRead(afile))
+{
+	fileStream.Read(bom, 0, READ_SIZE);
+	for (int i = 0; i < READ_SIZE - 4; i++)
+	{
+		// search for 'JFIF' signature
+		if (bom[i] != 'J' || bom[i + 1] != 'F' || 
+		    bom[i + 2] != 'I' || bom[i + 3] != 'F') 
+			continue;
+
+		// found it.
+		int units = bom[i + 7];
+		int xd = bom[i + 8] * 256 + bom[i + 9];
+		int yd = bom[i + 10] * 256 + bom[i + 11];
+		if (units == 0) // zero for units appears not to be a problem
+			break; // don't search any further
+		if (xd != yd)
+		{
+			if (xd == 1 || yd == 1)
+				Console.WriteLine("Thin image: {0} ({3}:{1}x{2})", afile, xd, yd, units);
+			else if (yd != 0) // zero for ydensity appears not to be a problem
+				Console.WriteLine("Stretch image: {0} ({3}:{1}x{2})", afile, xd, yd, units);
+		}
+
+		break; // don't look any further [at least one image with two JFIF signatures...]
+	}
+</pre>
+<p>
+For the rest of the code, see my <b>JFIF_Scanner</b> repository. It doesn't identify
+images where the DPI is way out of whack compared to the screen DPI of 96.
+</p>
+<p>How many 'problem' images did I have? 637 "thin" images (width of 1 pixel)
+and 407 "stretched" images - X and Y DPI values out of sync. Out of ... 473,000+
+jpeg files.
+</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+</body>
+</html>

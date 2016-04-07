@@ -28,11 +28,12 @@
 Windows has a problem displaying certain JPEG images. This problem typically manifests as
 "Windows Photo Viewer stretches my images". An example of an extreme case:
 </p><p>
-<IMG alt=one-pixel src="../images/win_dpi_extreme.png">
+<IMG alt=one-pixel src="../images/win_dpi_extreme.PNG">
 </p><p>
 There are various threads out in the InterWebs complaining about the issue.
 E.g. <a href="http://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/windows7-photo-viewer-compresses-my-jpgs-to-a/10be5522-2a9b-4644-a42d-c2e5ba2e908b?page=1">here</a>
 , and <a href="http://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/windows-photo-viewer-stretches-my-pictures/41261f20-cf26-49cf-9843-f08f527700a2?page=1">here</a>.
+Google for "Windows Photo Viewer thin line" and you'll get plenty more.
 The problem is not limited to Windows' built-in utilities: it also shows up
 for us image application developers. The reason is the problem is in the Windows
 image libraries apon which many image applications are built.
@@ -63,7 +64,7 @@ the header is described. Three fields are behind this problem: the Xdensity, Yde
 and units. Here is a screencap of the relevant details (highlighted):
 </P>
 <p>
-<IMG alt=cap src="../images/jpg_standard_cap.png">
+<IMG alt=cap src="../images/jpg_standard_cap.PNG">
 </p>
 <p>
 For unknown reasons, some image editing applications have stored inconsistent,
@@ -75,13 +76,13 @@ honor those values, usually with poor results.
 <P>
 You'll never encounter the problem if you always specify the output height and
 width when drawing images (or if you don't have any buggy JPEGs!). But if you
-rely on <pre>System.Windows.Media.Imaging.BitmapImage</pre> or <pre>Graphics.DrawImage</pre>
+rely on <code>System.Windows.Media.Imaging.BitmapImage</code> or <code>Graphics.DrawImage</code>
 to correctly "guess" the destination size of images, the problem will occur.
 By specifying the output dimensions of the image, you force the Image libraries
 to ignore the DPI values <i>inside</i> the image.
 </p>
 <p>
-Example of problematic code (<pre>Graphics.DrawImage</pre>):
+Example of problematic code (<code>Graphics.DrawImage</code>):
 </p>
 <pre>
 Bitmap imageFromFile; // image loaded from a file
@@ -109,14 +110,14 @@ Straight from the Microsoft examples, the following WPF fragments will
 display problematic images badly (first the XAML version, then the 
 code-behind variant):
 </p>
-<pre>
+<code>
 <Image Width="200">
   <Image.Source>
     <BitmapImage DecodePixelWidth="200"  
      UriSource="C:\Documents and Settings\All Users\Documents\My Pictures\Sample Pictures\Water Lilies.jpg" />
   </Image.Source>
 </Image>
-</pre>
+</code>
 <p> </p>
 <pre>
 Image myImage = new Image();
@@ -134,12 +135,12 @@ myBitmapImage.EndInit();
 myImage.Source = myBitmapImage;
 </pre>
 <p>
-Irritatingly, I have not found that specifying the <pre>DecodePixelWidth</pre> value 
+Irritatingly, I have not found that specifying the <code>DecodePixelWidth</code> value 
 solves the problem. 
 </p><p>
 An example of fixed code for WPF is too long to show here. In my projects, I'm using an
-<pre>ImageConverter</pre>, and in that code, performing convolutions to specify the image dimensions.
-See the <pre>BooruTagger</pre> repository, <pre>ImageConverter.cs</pre>.
+<code>ImageConverter</code>, and in that code, performing convolutions to specify the image dimensions.
+See the <code>BooruTagger</code> repository, <code>ImageConverter.cs</code>.
 </p>
 
 
@@ -172,8 +173,8 @@ In my testing, I have found the following scenarios:
 <p>
 Annoyingly, various tools which might easily identify an image's DPI settings,
 do a poor job. Specifically, Windows Explorer never shows the two values,
-only the one "valid" value. The <pre>identify</pre> program (part of ImageMagick)
-also fails to provide useful data, even in <pre>-verbose</pre> mode.
+only the one "valid" value. The <code>identify</code> program (part of ImageMagick)
+also fails to provide useful data, even in <code>-verbose</code> mode.
 </p><p>
 So I wrote my own. The code below is the guts of the "is this a problem image" test:
 </p>

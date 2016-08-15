@@ -1,0 +1,2312 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fire-eggs.GitHub.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+<style>
+.AlignLeft { text-align: left; }
+.AlignCenter { text-align: center; }
+.AlignRight { text-align: right; }
+.Wrap { white-space: nowrap; }
+body { font-family: sans-serif; font-size: 11pt; }
+td { vertical-align: top; padding-left: 4px; padding-right: 4px; }
+
+tr.SectionGap td { font-size: 4px; border-left: none; border-top: none; border-bottom: 1px solid Black; border-right: 1px solid Black; }
+tr.SectionAll td { border-left: none; border-top: none; border-bottom: 1px solid Black; border-right: 1px solid Black; }
+tr.SectionBegin td { border-left: none; border-top: none; border-right: 1px solid Black; }
+tr.SectionEnd td { border-left: none; border-top: none; border-bottom: 1px solid Black; border-right: 1px solid Black; }
+tr.SectionMiddle td { border-left: none; border-top: none; border-right: 1px solid Black; }
+tr.SubsectionAll td { border-left: none; border-top: none; border-bottom: 1px solid Gray; border-right: 1px solid Black; }
+tr.SubsectionEnd td { border-left: none; border-top: none; border-bottom: 1px solid Gray; border-right: 1px solid Black; }
+table.fc { border-top: 1px solid Black; border-left: 1px solid Black; width: 100%; font-family: monospace; font-size: 10pt; }
+td.TextItemInsigAdd { color: #000000; background-color: #EFEFFF; }
+td.TextItemInsigDel { color: #000000; background-color: #EFEFFF; text-decoration: line-through; }
+td.TextItemInsigDiffMod { color: #000000; background-color: #EFEFFF; }
+td.TextItemInsigLeftMod { color: #000000; background-color: #EFEFFF; }
+td.TextItemInsigRightMod { color: #000000; background-color: #EFEFFF; }
+td.TextItemNum { color: #827357; background-color: #F2F2F2; }
+td.TextItemSame { color: #000000; background-color: #FFFFFF; }
+td.TextItemSigAdd { color: #000000; background-color: #FFE3E3; }
+td.TextItemSigDel { color: #000000; background-color: #FFE3E3; text-decoration: line-through; }
+td.TextItemSigDiffMod { color: #000000; background-color: #FFE3E3; }
+td.TextItemSigLeftMod { color: #000000; background-color: #FFE3E3; }
+td.TextItemSigRightMod { color: #000000; background-color: #FFE3E3; }
+.TextSegInsigDiff { color: #0000FF; }
+.TextSegReplacedDiff { color: #0000FF; font-style: italic; }
+.TextSegSigDiff { color: #FF0000; }
+</style>
+<title>GEDCOM Grammars : 5.5 vs 5.5.1</title>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
+          <h1 id="project_title">GEDCOM Grammars : 5.5 vs 5.5.1</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<P>
+In a <a href="http://blog-en.coret.org/2014/12/which-gedcom-55-grammar-is-correct.html">blog</a> 
+entry, Bob Coret provides a useful comparison between the 
+two variants of the GEDCOM 5.5 grammar.
+<P>
+Below I show a similar comparison between the 5.5 and 5.5.1 grammars.
+Specifically, the "2 Jan 1996" variant of the 5.5 specification. 
+<P>
+The text from the GEDCOM 5.5 grammar has been lightly edited to remove spurious
+differences. E.g. in both grammars, the FAM_RECORD includes these elements:
+<pre>
++1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}
++1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}
++1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}
+</pre>
+However, in the two specification documents, the elements are listed in different 
+positions and in a different
+order. Since the specification states the order of elements is not significant,
+I have reduced "noise" by tweaking the text of the 5.5 specification.
+<P>
+
+<P>
+I don't pretend this is comprehensive, I have not examined the "primitive elements"
+ of the grammars for differences.
+Any typos, errors, etc. are my own and not the fault of the Family History Department
+of the Church of Jesus Christ of Latter-day Saints.
+<P>
+The difference table was produced thanks to <a href="http://www.scootersoftware.com/">Beyond Compare</a>.
+<P>
+
+<H2>
+GEDCOM 5.5 vs 5.5.1
+</H2>
+Produced: 8/15/2016 4:16:19 PM<br/>
+&nbsp; &nbsp;
+<br/>
+<table class="fc" cellspacing="0" cellpadding="0">
+<THEAD align="center">
+<TR>
+<TH align="center">GEDCOM 5.5</TH>
+<TH>&nbsp;</TH>
+<TH align="center">GEDCOM 5.5.1</TH>
+</TR>
+</THEAD>
+<TBODY>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">HEADER:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">HEADER:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n HEAD {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n HEAD {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SOUR &lt;APPROVED_SYSTEM_ID&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SOUR &lt;APPROVED_SYSTEM_ID&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 VERS &lt;VERSION_NUMBER&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 VERS &lt;VERSION_NUMBER&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 NAME &lt;NAME_OF_PRODUCT&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 NAME &lt;NAME_OF_PRODUCT&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 CORP &lt;NAME_OF_BUSINESS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 CORP &lt;NAME_OF_BUSINESS&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+3 &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+3 &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 DATA &lt;NAME_OF_SOURCE_DATA&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 DATA &lt;NAME_OF_SOURCE_DATA&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+3 DATE &lt;PUBLICATION_DATE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+3 DATE &lt;PUBLICATION_DATE&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+3 COPR &lt;COPYRIGHT_SOURCE_DATA&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+3 COPR &lt;COPYRIGHT_SOURCE_DATA&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+4</span> <span class="TextSegSigDiff">[CONT|CONC]&lt;COPYRIGHT_SOURCE_DATA&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 DEST &lt;RECEIVING_SYSTEM_NAME&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 DEST &lt;RECEIVING_SYSTEM_NAME&gt; {0:1} </td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATE &lt;TRANSMISSION_DATE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATE &lt;TRANSMISSION_DATE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TIME &lt;TIME_VALUE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TIME &lt;TIME_VALUE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SUBM @&lt;XREF:SUBM&gt;@ {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SUBM @&lt;XREF:SUBM&gt;@ {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SUBN @&lt;XREF:SUBN&gt;@ {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SUBN @&lt;XREF:SUBN&gt;@ {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 FILE &lt;FILE_NAME&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 FILE &lt;FILE_NAME&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 COPR &lt;COPYRIGHT_GEDCOM_FILE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 COPR &lt;COPYRIGHT_GEDCOM_FILE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 GEDC {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 GEDC {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 VERS &lt;VERSION_NUMBER&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 VERS &lt;VERSION_NUMBER&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 FORM &lt;GEDCOM_FORM&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 FORM &lt;GEDCOM_FORM&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 CHAR &lt;CHARACTER_SET&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 CHAR &lt;CHARACTER_SET&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 VERS &lt;VERSION_NUMBER&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 VERS &lt;VERSION_NUMBER&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 LANG &lt;LANGUAGE_OF_TEXT&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 LANG &lt;LANGUAGE_OF_TEXT&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 PLAC {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 PLAC {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 FORM &lt;PLACE_HIERARCHY&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 FORM &lt;PLACE_HIERARCHY&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 NOTE &lt;GEDCOM_CONTENT_DESCRIPTION&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 NOTE &lt;GEDCOM_CONTENT_DESCRIPTION&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;GEDCOM_CONTENT_DESCRIPTION&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;GEDCOM_CONTENT_DESCRIPTION&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">RECORD:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">[</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">[</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;FAM_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;FAM_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;INDIVIDUAL_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;INDIVIDUAL_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;MULTIMEDIA_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;MULTIMEDIA_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;NOTE_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;NOTE_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;REPOSITORY_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;REPOSITORY_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;SOURCE_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;SOURCE_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;SUBMITTER_RECORD&gt;&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;SUBMITTER_RECORD&gt;&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">FAM_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">FAM_RECORD:=</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n @&lt;XREF:FAM&gt;@ FAM {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @&lt;XREF:FAM&gt;@ FAM {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">RESN</span> <span class="TextSegSigDiff">&lt;RESTRICTION_NOTICE&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">+1 &lt;&lt;FAMILY_EVENT_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;FAMILY_EVENT_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">HUSB</span> <span class="TextSegSigDiff">{0:1}</span></td>
+<td class="AlignCenter Wrap">+-</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+3</span> <span class="TextSegSigDiff">AGE</span> <span class="TextSegSigDiff">&lt;AGE_AT_EVENT&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">WIFE</span> <span class="TextSegSigDiff">{0:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+3</span> <span class="TextSegSigDiff">AGE</span> <span class="TextSegSigDiff">&lt;AGE_AT_EVENT&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 HUSB @&lt;XREF:INDI&gt;@ {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 HUSB @&lt;XREF:INDI&gt;@ {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 WIFE @&lt;XREF:INDI&gt;@ {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 WIFE @&lt;XREF:INDI&gt;@ {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 CHIL @&lt;XREF:INDI&gt;@ {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 CHIL @&lt;XREF:INDI&gt;@ {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 NCHI &lt;COUNT_OF_CHILDREN&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 NCHI &lt;COUNT_OF_CHILDREN&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SUBM @&lt;XREF:SUBM&gt;@ {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SUBM @&lt;XREF:SUBM&gt;@ {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;LDS_SPOUSE_SEALING&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;LDS_SPOUSE_SEALING&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">INDIVIDUAL_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">INDIVIDUAL_RECORD:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n @XREF:INDI@ INDI {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @XREF:INDI@ INDI {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RESN &lt;RESTRICTION_NOTICE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RESN &lt;RESTRICTION_NOTICE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;PERSONAL_NAME_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;PERSONAL_NAME_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SEX &lt;SEX_VALUE&gt;&nbsp; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SEX &lt;SEX_VALUE&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;INDIVIDUAL_EVENT_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;INDIVIDUAL_EVENT_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;INDIVIDUAL_ATTRIBUTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;INDIVIDUAL_ATTRIBUTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;LDS_INDIVIDUAL_ORDINANCE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;LDS_INDIVIDUAL_ORDINANCE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHILD_TO_FAMILY_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHILD_TO_FAMILY_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SPOUSE_TO_FAMILY_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SPOUSE_TO_FAMILY_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SUBM @&lt;XREF:SUBM&gt;@ {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SUBM @&lt;XREF:SUBM&gt;@ {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;ASSOCIATION_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;ASSOCIATION_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 ALIA @&lt;XREF:INDI&gt;@ {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 ALIA @&lt;XREF:INDI&gt;@ {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 ANCI @&lt;XREF:SUBM&gt;@ {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 ANCI @&lt;XREF:SUBM&gt;@ {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DESI @&lt;XREF:SUBM&gt;@ {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DESI @&lt;XREF:SUBM&gt;@ {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RFN &lt;PERMANENT_RECORD_FILE_NUMBER&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RFN &lt;PERMANENT_RECORD_FILE_NUMBER&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 AFN &lt;ANCESTRAL_FILE_NUMBER&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 AFN &lt;ANCESTRAL_FILE_NUMBER&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">MULTIMEDIA_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">MULTIMEDIA_RECORD:=</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n @XREF:OBJE@ OBJE {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @XREF:OBJE@ OBJE {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">FILE</span> <span class="TextSegSigDiff">&lt;MULTIMEDIA_FILE_REFN&gt;</span> <span class="TextSegSigDiff">{1:M}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">1</span> FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">2</span> FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+3</span> <span class="TextSegSigDiff">TYPE</span> <span class="TextSegSigDiff">&lt;SOURCE_MEDIA_TYPE&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">1</span> TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">2</span> TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">BLOB</span> <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">CONT</span> <span class="TextSegSigDiff">&lt;ENCODED_MULTIMEDIA_LINE&gt;</span> <span class="TextSegSigDiff">{1:M}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">OBJE</span> <span class="TextSegSigDiff">@&lt;XREF:OBJE&gt;@</span> <span class="TextSegSigDiff">/*</span> <span class="TextSegSigDiff">chain</span> <span class="TextSegSigDiff">to</span> <span class="TextSegSigDiff">continued</span> <span class="TextSegSigDiff">object</span> <span class="TextSegSigDiff">*/</span> <span class="TextSegSigDiff">{0:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;SOURCE_CITATION&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">NOTE_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">NOTE_RECORD:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n @&lt;XREF:NOTE&gt;@ NOTE &lt;SUBMITTER_TEXT&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @&lt;XREF:NOTE&gt;@ NOTE &lt;SUBMITTER_TEXT&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 [ CONC | CONT] &lt;SUBMITTER_TEXT&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 [CONC|CONT] &lt;SUBMITTER_TEXT&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">REPOSITORY_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">REPOSITORY_RECORD:=</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n @&lt;XREF:REPO&gt;@ REPO {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @&lt;XREF:REPO&gt;@ REPO {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 NAME &lt;NAME_OF_REPOSITORY&gt;&nbsp; {<span class="TextSegSigDiff">0</span>:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 NAME &lt;NAME_OF_REPOSITORY&gt;&nbsp; {<span class="TextSegSigDiff">1</span>:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">SOURCE_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">SOURCE_RECORD:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n @&lt;XREF:SOUR&gt;@ SOUR {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @&lt;XREF:SOUR&gt;@ SOUR {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATA {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATA {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 EVEN &lt;EVENTS_RECORDED&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 EVEN &lt;EVENTS_RECORDED&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+3 DATE &lt;DATE_PERIOD&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+3 DATE &lt;DATE_PERIOD&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+3 PLAC &lt;SOURCE_JURISDICTION_PLACE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+3 PLAC &lt;SOURCE_JURISDICTION_PLACE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 AGNC &lt;RESPONSIBLE_AGENCY&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 AGNC &lt;RESPONSIBLE_AGENCY&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 AUTH &lt;SOURCE_ORIGINATOR&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 AUTH &lt;SOURCE_ORIGINATOR&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;SOURCE_ORIGINATOR&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;SOURCE_ORIGINATOR&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TITL &lt;SOURCE_DESCRIPTIVE_TITLE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TITL &lt;SOURCE_DESCRIPTIVE_TITLE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;SOURCE_DESCRIPTIVE_TITLE&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;SOURCE_DESCRIPTIVE_TITLE&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 ABBR &lt;SOURCE_FILED_BY_ENTRY&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 ABBR &lt;SOURCE_FILED_BY_ENTRY&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 PUBL &lt;SOURCE_PUBLICATION_FACTS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 PUBL &lt;SOURCE_PUBLICATION_FACTS&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;SOURCE_PUBLICATION_FACTS&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;SOURCE_PUBLICATION_FACTS&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEXT &lt;TEXT_FROM_SOURCE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEXT &lt;TEXT_FROM_SOURCE&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;SOURCE_REPOSITORY_CITATION&gt;&gt; {0:<span class="TextSegSigDiff">1</span>}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;SOURCE_REPOSITORY_CITATION&gt;&gt; {0:<span class="TextSegSigDiff">M</span>}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 REFN &lt;USER_REFERENCE_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TYPE &lt;USER_REFERENCE_TYPE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">SUBMISSION_RECORD:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">SUBMISSION_RECORD:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n @XREF:SUBN@ SUBN {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @XREF:SUBN@ SUBN {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 SUBM @XREF:SUBM@ {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 SUBM @XREF:SUBM@ {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 FAMF &lt;NAME_OF_FAMILY_FILE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 FAMF &lt;NAME_OF_FAMILY_FILE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 ANCE &lt;GENERATIONS_OF_ANCESTORS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 ANCE &lt;GENERATIONS_OF_ANCESTORS&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DESC &lt;GENERATIONS_OF_DESCENDANTS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DESC &lt;GENERATIONS_OF_DESCENDANTS&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 ORDI &lt;ORDINANCE_PROCESS_FLAG&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 ORDI &lt;ORDINANCE_PROCESS_FLAG&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;NOTE_STRUCTURE&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;CHANGE_DATE&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">SUBMITTER_RECORD:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">SUBMITTER_RECORD:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n @&lt;XREF:SUBM&gt;@ SUBM {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n @&lt;XREF:SUBM&gt;@ SUBM {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 NAME &lt;SUBMITTER_NAME&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 NAME &lt;SUBMITTER_NAME&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 LANG &lt;LANGUAGE_PREFERENCE&gt; {0:3}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 LANG &lt;LANGUAGE_PREFERENCE&gt; {0:3}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 RFN &lt;SUBMITTER_REGISTERED_RFN&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RFN &lt;SUBMITTER_REGISTERED_RFN&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 RIN &lt;AUTOMATED_RECORD_ID&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;NOTE_STRUCTURE&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;CHANGE_DATE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">ADDRESS_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">ADDRESS_STRUCTURE:=</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n ADDR &lt;ADDRESS_LINE&gt; {<span class="TextSegSigDiff">0</span>:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n ADDR &lt;ADDRESS_LINE&gt; {<span class="TextSegSigDiff">1</span>:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 CONT &lt;ADDRESS_LINE&gt; {0:<span class="TextSegSigDiff">M</span>}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 CONT &lt;ADDRESS_LINE&gt; {0:<span class="TextSegSigDiff">3</span>}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 ADR1 &lt;ADDRESS_LINE1&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 ADR1 &lt;ADDRESS_LINE1&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 ADR2 &lt;ADDRESS_LINE2&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 ADR2 &lt;ADDRESS_LINE2&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">ADR3</span> <span class="TextSegSigDiff">&lt;ADDRESS_LINE3&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 CITY &lt;ADDRESS_CITY&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 CITY &lt;ADDRESS_CITY&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 STAE &lt;ADDRESS_STATE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 STAE &lt;ADDRESS_STATE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 POST &lt;ADDRESS_POSTAL_CODE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 POST &lt;ADDRESS_POSTAL_CODE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 CTRY &lt;ADDRESS_COUNTRY&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 CTRY &lt;ADDRESS_COUNTRY&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n PHON &lt;PHONE_NUMBER&gt; {0:3}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n PHON &lt;PHONE_NUMBER&gt; {0:3}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">EMAIL</span> <span class="TextSegSigDiff">&lt;ADDRESS_EMAIL&gt;</span> <span class="TextSegSigDiff">{0:3}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">FAX</span> <span class="TextSegSigDiff">&lt;ADDRESS_FAX&gt;</span> <span class="TextSegSigDiff">{0:3}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">WWW</span> <span class="TextSegSigDiff">&lt;ADDRESS_WEB_PAGE&gt;</span> <span class="TextSegSigDiff">{0:3}</span></td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">ASSOCIATION_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">ASSOCIATION_STRUCTURE:=</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n ASSO @&lt;XREF:INDI&gt;@ {<span class="TextSegSigDiff">0:M</span>}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n ASSO @&lt;XREF:INDI&gt;@ {<span class="TextSegSigDiff">1:1</span>}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">TYPE</span> <span class="TextSegSigDiff">&lt;RECORD_TYPE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 RELA &lt;RELATION_IS_DESCRIPTOR&gt; {1:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 RELA &lt;RELATION_IS_DESCRIPTOR&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">CHANGE_DATE:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">CHANGE_DATE:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n CHAN {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n CHAN {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATE &lt;CHANGE_DATE&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATE &lt;CHANGE_DATE&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TIME &lt;TIME_VALUE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TIME &lt;TIME_VALUE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">CHILD_TO_FAMILY_LINK:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">CHILD_TO_FAMILY_LINK:=</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n FAMC @&lt;XREF:FAM&gt;@ {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n FAMC @&lt;XREF:FAM&gt;@ {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">+1 PEDI &lt;PEDIGREE_LINKAGE_TYPE&gt; {0:<span class="TextSegSigDiff">M</span>}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 PEDI &lt;PEDIGREE_LINKAGE_TYPE&gt; {0:<span class="TextSegSigDiff">1</span>}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">STAT</span> <span class="TextSegSigDiff">&lt;CHILD_LINKAGE_STATUS&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">EVENT_DETAIL:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">EVENT_DETAIL:=</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">n TYPE &lt;EVENT_<span class="TextSegSigDiff">DE</span><span class="TextSegSigDiff">S</span><span class="TextSegSigDiff">CR</span><span class="TextSegSigDiff">IPTOR</span>&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n TYPE &lt;EVENT_<span class="TextSegSigDiff">OR_FACT_CLASSIFICATI</span><span class="TextSegSigDiff">ON</span>&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">n DATE &lt;DATE_VALUE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">n DATE &lt;DATE_VALUE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;PLACE_STRUCTURE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;PLACE_STRUCTURE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;ADDRESS_STRUCTURE&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">AGE</span> <span class="TextSegSigDiff">&lt;AGE_AT_EVENT&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+<td class="AlignCenter Wrap">+-</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">n AGNC &lt;RESPONSIBLE_AGENCY&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">n AGNC &lt;RESPONSIBLE_AGENCY&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">RELI</span> <span class="TextSegSigDiff">&lt;RELIGIOUS_AFFILIATION&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">n CAUS &lt;CAUSE_OF_EVENT&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">n CAUS &lt;CAUSE_OF_EVENT&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">RESN</span> <span class="TextSegSigDiff">&lt;RESTRICTION_NOTICE&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">n &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">n &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">FAMILY_EVENT_DETAIL:=</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">HUSB</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">AGE</span> <span class="TextSegSigDiff">&lt;AGE_AT_EVENT&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">WIFE</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">AGE</span> <span class="TextSegSigDiff">&lt;AGE_AT_EVENT&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">&lt;&lt;EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">FAMILY_EVENT_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">FAMILY_EVENT_STRUCTURE:=</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">[</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">[</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ ANUL | CENS | DIV | DIVF ] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ ANUL | CENS | DIV | DIVF ]&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">FAMILY_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ ENGA | MAR<span class="TextSegSigDiff">R</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">MAR</span>B | MARC <span class="TextSegSigDiff">]</span> <span class="TextSegSigDiff">[Y|&lt;NULL&gt;</span>] {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ ENGA | MARB | MARC ] {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">FAMILY_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">[</span> MAR<span class="TextSegSigDiff">L</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">MARS</span> <span class="TextSegSigDiff">]</span> [Y|&lt;NULL&gt;] {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n MAR<span class="TextSegSigDiff">R</span> [Y|&lt;NULL&gt;] {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">FAMILY_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">EVEN</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">[</span> <span class="TextSegSigDiff">MARL</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">MARS</span> <span class="TextSegSigDiff">]</span> {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">FAMILY_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">RESI</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;FAMILY_EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">EVEN</span> <span class="TextSegSigDiff">[&lt;EVENT_DESCRIPTOR&gt;</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">&lt;NULL&gt;]</span>&nbsp; <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;FAMILY_EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">INDIVIDUAL_ATTRIBUTE_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">INDIVIDUAL_ATTRIBUTE_STRUCTURE:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">[</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">[</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n CAST &lt;CASTE_NAME&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n CAST &lt;CASTE_NAME&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n DSCR &lt;PHYSICAL_DESCRIPTION&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n DSCR &lt;PHYSICAL_DESCRIPTION&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">[CONC</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">CONT</span> <span class="TextSegSigDiff">]</span> <span class="TextSegSigDiff">&lt;PHYSICAL_DESCRIPTION&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n EDUC &lt;SCHOLASTIC_ACHIEVEMENT&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n EDUC &lt;SCHOLASTIC_ACHIEVEMENT&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n IDNO &lt;NATIONAL_ID_NUMBER&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n IDNO &lt;NATIONAL_ID_NUMBER&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n NATI &lt;NATIONAL_OR_TRIBAL_ORIGIN&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n NATI &lt;NATIONAL_OR_TRIBAL_ORIGIN&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n NCHI &lt;COUNT_OF_CHILDREN&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n NCHI &lt;COUNT_OF_CHILDREN&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n NMR &lt;COUNT_OF_MARRIAGES&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n NMR &lt;COUNT_OF_MARRIAGES&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n OCCU &lt;OCCUPATION&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n OCCU &lt;OCCUPATION&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n PROP &lt;POSSESSIONS&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n PROP &lt;POSSESSIONS&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n RELI &lt;RELIGIOUS_AFFILIATION&gt;&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n RELI &lt;RELIGIOUS_AFFILIATION&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n RESI&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n RESI&nbsp; <span class="TextSegSigDiff">/*</span> <span class="TextSegSigDiff">Resides</span> <span class="TextSegSigDiff">at</span> <span class="TextSegSigDiff">*/</span> {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n SSN &lt;SOCIAL_SECURITY_NUMBER&gt;&nbsp; {<span class="TextSegSigDiff">0</span>:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n SSN &lt;SOCIAL_SECURITY_NUMBER&gt;&nbsp; {<span class="TextSegSigDiff">1</span>:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n TITL &lt;NOBILITY_TYPE_TITLE&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n TITL &lt;NOBILITY_TYPE_TITLE&gt; {1:1} </td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">FACT</span> <span class="TextSegSigDiff">&lt;ATTRIBUTE_DESCRIPTOR&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;INDIVIDUAL_EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">INDIVIDUAL_EVENT_DETAIL:=</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">&lt;&lt;EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">AGE</span> <span class="TextSegSigDiff">&lt;AGE_AT_EVENT&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">INDIVIDUAL_EVENT_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">INDIVIDUAL_EVENT_STRUCTURE:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">[</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">[</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n [ BIRT | CHR ] [Y|&lt;NULL&gt;] {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n [ BIRT | CHR ] [Y|&lt;NULL&gt;] {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 FAMC @&lt;XREF:FAM&gt;@ {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 FAMC @&lt;XREF:FAM&gt;@ {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">[</span> DEAT <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">BURI</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">CREM</span> <span class="TextSegSigDiff">]</span> [Y|&lt;NULL&gt;]&nbsp; {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n DEAT [Y|&lt;NULL&gt;]&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">[</span> <span class="TextSegSigDiff">BURI</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">CREM</span> <span class="TextSegSigDiff">]</span>&nbsp; <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;INDIVIDUAL_EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">n ADOP <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">n ADOP {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 FAMC @&lt;XREF:FAM&gt;@ {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 FAMC @&lt;XREF:FAM&gt;@ {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 ADOP &lt;ADOPTED_BY_WHICH_PARENT&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 ADOP &lt;ADOPTED_BY_WHICH_PARENT&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ BAPM | BARM | BASM | BLES ] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ BAPM | BARM | BASM | BLES ] {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ CHRA | CONF | FCOM | ORDN ] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ CHRA | CONF | FCOM | ORDN ] {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ NATU | EMIG | IMMI ] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ NATU | EMIG | IMMI ] {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ CENS | PROB | WILL] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ CENS | PROB | WILL] {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">n [ GRAD | RETI ] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n [ GRAD | RETI ]&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n EVEN {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n EVEN&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">INDIVIDUAL_</span>EVENT_DETAIL&gt;&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">LDS_INDIVIDUAL_ORDINANCE:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">LDS_INDIVIDUAL_ORDINANCE:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">[</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">[</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n [ BAPL | CONL ] {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n [ BAPL | CONL ] {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_BAPTISM_DATE_STATUS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_BAPTISM_DATE_STATUS&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">DATE</span> <span class="TextSegSigDiff">&lt;CHANGE_DATE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n ENDL {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n ENDL {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_ENDOWMENT_DATE_STATUS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_ENDOWMENT_DATE_STATUS&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">DATE</span> <span class="TextSegSigDiff">&lt;CHANGE_DATE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n SLGC {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n SLGC {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 FAMC @&lt;XREF:FAM&gt;@ {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 FAMC @&lt;XREF:FAM&gt;@ {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_CHILD_SEALING_DATE_STATUS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_CHILD_SEALING_DATE_STATUS&gt; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">DATE</span> <span class="TextSegSigDiff">&lt;CHANGE_DATE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">LDS_SPOUSE_SEALING:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">LDS_SPOUSE_SEALING:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n SLGS {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n SLGS {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATE &lt;DATE_LDS_ORD&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEMP &lt;TEMPLE_CODE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 PLAC &lt;PLACE_LIVING_ORDINANCE&gt; {0:1} </td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_SPOUSE_SEALING_DATE_STATUS&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 STAT &lt;LDS_SPOUSE_SEALING_DATE_STATUS&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">DATE</span> <span class="TextSegSigDiff">&lt;CHANGE_DATE&gt;</span>&nbsp; <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt;&nbsp; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;SOURCE_CITATION&gt;&gt;&nbsp; {0:M}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">MULTIMEDIA_LINK:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">MULTIMEDIA_LINK:=</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">[</span> <span class="TextSegSigDiff">/*</span> <span class="TextSegSigDiff">embedded</span> <span class="TextSegSigDiff">form*/</span></td>
+<td class="AlignCenter Wrap">+-</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">n OBJE @&lt;XREF:OBJE&gt;@ {1:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">n OBJE @&lt;XREF:OBJE&gt;@&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">| <span class="TextSegSigDiff">/*</span> <span class="TextSegSigDiff">linked</span> <span class="TextSegSigDiff">form*/</span></td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">n OBJE&nbsp; <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">n OBJE</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">FILE</span> <span class="TextSegSigDiff">&lt;MULTIMEDIA_FILE_REFN&gt;</span>&nbsp; <span class="TextSegSigDiff">{1:M}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">1</span> FORM &lt;MULTIMEDIA_FORMAT&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">2</span> FORM &lt;MULTIMEDIA_FORMAT&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+3</span> <span class="TextSegSigDiff">MEDI</span>&nbsp; <span class="TextSegSigDiff">&lt;SOURCE_MEDIA_TYPE&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">+1 TITL &lt;DESCRIPTIVE_TITLE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 TITL &lt;DESCRIPTIVE_TITLE&gt;&nbsp; {0:1} </td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">FILE</span> <span class="TextSegSigDiff">&lt;MULTIMEDIA_FILE_REFERENCE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="AlignCenter Wrap">+-</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;NOTE_STRUCTURE&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">]</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">NOTE_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">NOTE_STRUCTURE:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">[</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">[</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n NOTE @&lt;XREF:NOTE&gt;@ {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n NOTE @&lt;XREF:NOTE&gt;@&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;SOURCE_CITATION&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+<td class="AlignCenter Wrap">+-</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">|</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">|</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n NOTE [&lt;SUBMITTER_TEXT&gt; | &lt;NULL&gt;] {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n NOTE [&lt;SUBMITTER_TEXT&gt; | &lt;NULL&gt;]&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 [CONC|CONT] &lt;SUBMITTER_TEXT&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 [CONC|CONT] &lt;SUBMITTER_TEXT&gt;&nbsp; {0:M}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;SOURCE_CITATION&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+<td class="AlignCenter Wrap">+-</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">PERSONAL_NAME_PIECES:=</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">NPFX</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_PREFIX&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">GIVN</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_GIVEN&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">NICK</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_NICKNAME&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">SPFX</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_SURNAME_PREFIX</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">SURN</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_SURNAME&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">NSFX</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_SUFFIX&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">&lt;&lt;NOTE_STRUCTURE&gt;&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">&lt;&lt;SOURCE_CITATION&gt;&gt;</span>&nbsp; <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">PERSONAL_NAME_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">PERSONAL_NAME_STRUCTURE:=</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">n NAME &lt;NAME_PERSONAL&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n NAME &lt;NAME_PERSONAL&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">N</span><span class="TextSegSigDiff">PFX</span> &lt;NAME_P<span class="TextSegSigDiff">IECE_PREFIX</span>&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">TYPE</span> &lt;NAME_<span class="TextSegSigDiff">TY</span>P<span class="TextSegSigDiff">E</span>&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">GIV</span><span class="TextSegSigDiff">N</span> <span class="TextSegSigDiff">&lt;</span>NAME_PIECE<span class="TextSegSigDiff">_GIVEN</span>&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">&lt;&lt;PERSONAL_</span>NAME_PIECE<span class="TextSegSigDiff">S&gt;</span>&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">NICK</span> &lt;NAME_PI<span class="TextSegSigDiff">ECE_N</span><span class="TextSegSigDiff">ICKNAME</span>&gt; {0:<span class="TextSegSigDiff">1</span>}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">FONE</span> &lt;NAME_P<span class="TextSegSigDiff">HONET</span>I<span class="TextSegSigDiff">C</span><span class="TextSegSigDiff">_VARIATIO</span><span class="TextSegSigDiff">N</span>&gt;&nbsp; {0:<span class="TextSegSigDiff">M</span>}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">TYPE</span> <span class="TextSegSigDiff">&lt;PHONETIC_TYPE&gt;</span>&nbsp; <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">1</span> <span class="TextSegSigDiff">SPFX</span> <span class="TextSegSigDiff">&lt;</span>NAME_PIECE<span class="TextSegSigDiff">_SURNAME_PREFIX</span> {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">2</span> <span class="TextSegSigDiff">&lt;&lt;PERSONAL_</span>NAME_PIECE<span class="TextSegSigDiff">S&gt;&gt;</span>&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">SU</span>RN &lt;NAME_<span class="TextSegSigDiff">P</span><span class="TextSegSigDiff">I</span><span class="TextSegSigDiff">ECE_SUR</span><span class="TextSegSigDiff">NAME</span>&gt; {0:<span class="TextSegSigDiff">1</span>}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 R<span class="TextSegSigDiff">OM</span>N &lt;NAME_<span class="TextSegSigDiff">ROMANIZED</span><span class="TextSegSigDiff">_VARIATION</span>&gt;&nbsp; {0:<span class="TextSegSigDiff">M</span>}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigLeftMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">NSFX</span> <span class="TextSegSigDiff">&lt;NAME_PIECE_SUFFIX&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">1</span> &lt;<span class="TextSegSigDiff">&lt;SOURC</span><span class="TextSegSigDiff">E</span><span class="TextSegSigDiff">_CITATION&gt;&gt;</span> {<span class="TextSegSigDiff">0:M</span>}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">2</span> <span class="TextSegSigDiff">TYPE</span> &lt;<span class="TextSegSigDiff">R</span><span class="TextSegSigDiff">OMANIZED_</span><span class="TextSegSigDiff">TYPE</span><span class="TextSegSigDiff">&gt;</span>&nbsp; {<span class="TextSegSigDiff">1:1</span>}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">1</span> &lt;&lt;<span class="TextSegSigDiff">NOT</span>E_<span class="TextSegSigDiff">STRUCTURE</span>&gt;&gt; {0:<span class="TextSegSigDiff">M</span>}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+<span class="TextSegSigDiff">2</span> &lt;&lt;<span class="TextSegSigDiff">PERSONAL_NAM</span>E_<span class="TextSegSigDiff">PIE</span><span class="TextSegSigDiff">C</span><span class="TextSegSigDiff">ES</span>&gt;&gt;&nbsp; {0:<span class="TextSegSigDiff">1</span>}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">PLACE_STRUCTURE:=</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">PLACE_STRUCTURE:=</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">n PLAC &lt;PLACE_<span class="TextSegSigDiff">VALU</span>E&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n PLAC &lt;PLACE_<span class="TextSegSigDiff">NAM</span>E&gt;&nbsp; {1:1}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">+1 FORM &lt;PLACE_HIERARCHY&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 FORM &lt;PLACE_HIERARCHY&gt;&nbsp; {0:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">+1 &lt;<span class="TextSegSigDiff">&lt;SOUR</span>CE_<span class="TextSegSigDiff">C</span><span class="TextSegSigDiff">IT</span>ATION<span class="TextSegSigDiff">&gt;</span>&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">+1 <span class="TextSegSigDiff">FONE</span> &lt;<span class="TextSegSigDiff">PLA</span>CE_<span class="TextSegSigDiff">PHONETIC_VARI</span>ATION&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">TYPE</span> <span class="TextSegSigDiff">&lt;PHONETIC_TYPE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">ROMN</span> <span class="TextSegSigDiff">&lt;PLACE_ROMANIZED_VARIATION&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">TYPE</span> <span class="TextSegSigDiff">&lt;ROMANIZED_TYPE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">MAP</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">LATI</span> <span class="TextSegSigDiff">&lt;PLACE_LATITUDE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+2</span> <span class="TextSegSigDiff">LONG</span> <span class="TextSegSigDiff">&lt;PLACE_LONGITUDE&gt;</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">SOURCE_CITATION:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">SOURCE_CITATION:=</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSigDiffMod Wrap">[</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">[ <span class="TextSegSigDiff">/*</span> <span class="TextSegSigDiff">pointer</span> <span class="TextSegSigDiff">to</span> <span class="TextSegSigDiff">source</span> <span class="TextSegSigDiff">record</span> <span class="TextSegSigDiff">(preferred)*/</span></td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSigDiffMod Wrap">n SOUR @&lt;XREF:SOUR&gt;@ <span class="TextSegSigDiff">/*</span> <span class="TextSegSigDiff">pointer</span> <span class="TextSegSigDiff">to</span> <span class="TextSegSigDiff">source</span> <span class="TextSegSigDiff">record</span> <span class="TextSegSigDiff">*/</span> {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">n SOUR @&lt;XREF:SOUR&gt;@ {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 PAGE &lt;WHERE_WITHIN_SOURCE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 PAGE &lt;WHERE_WITHIN_SOURCE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 EVEN &lt;EVENT_TYPE_CITED_FROM&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 EVEN &lt;EVENT_TYPE_CITED_FROM&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 ROLE &lt;ROLE_IN_EVENT&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 ROLE &lt;ROLE_IN_EVENT&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 DATA {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 DATA {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 DATE &lt;ENTRY_RECORDING_DATE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 DATE &lt;ENTRY_RECORDING_DATE&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 TEXT &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 TEXT &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+3 [ CONC | CONT ] &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+3 [CONC|CONT] &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;MULTIMEDIA_LINK&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 QUAY &lt;CERTAINTY_ASSESSMENT&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 QUAY &lt;CERTAINTY_ASSESSMENT&gt; {0:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">| /* Systems not using source records */</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">| /* Systems not using source records */</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n SOUR &lt;SOURCE_DESCRIPTION&gt; {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n SOUR &lt;SOURCE_DESCRIPTION&gt; {1:1}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 [ CONC | CONT ] &lt;SOURCE_DESCRIPTION&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 [CONC|CONT] &lt;SOURCE_DESCRIPTION&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 TEXT &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 TEXT &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+2 [CONC | CONT ] &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 [CONC|CONT] &lt;TEXT_FROM_SOURCE&gt; {0:M}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;MULTIMEDIA_LINK&gt;&gt;</span> <span class="TextSegSigDiff">{0:M}</span></td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">-+</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">QUAY</span> <span class="TextSegSigDiff">&lt;CERTAINTY_ASSESSMENT&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">]</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">]</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">SOURCE_REPOSITORY_CITATION:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">SOURCE_REPOSITORY_CITATION:=</td>
+</tr>
+<tr class="SectionAll">
+<td class="TextItemSigDiffMod Wrap">n REPO @XREF:REPO@ {1:1}</td>
+<td class="AlignCenter Wrap">&lt;&gt;</td>
+<td class="TextItemSigDiffMod Wrap">n REPO <span class="TextSegSigDiff">[</span> @XREF:REPO@ <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">&lt;NULL&gt;]</span> {1:1}</td>
+</tr>
+<tr class="SectionBegin">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">=</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+1 CALN &lt;SOURCE_CALL_NUMBER&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 CALN &lt;SOURCE_CALL_NUMBER&gt; {0:M}</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">+2 MEDI &lt;SOURCE_MEDIA_TYPE&gt; {0:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+2 MEDI &lt;SOURCE_MEDIA_TYPE&gt; {0:1} </td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">SPOUSE_TO_FAMILY_LINK:=</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">SPOUSE_TO_FAMILY_LINK:=</td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">n FAMS @&lt;XREF:FAM&gt;@ {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">n FAMS @&lt;XREF:FAM&gt;@ {1:1}</td>
+</tr>
+<tr class="SectionEnd">
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
+</tr>
+</tbody>
+</table>
+<br/>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+</body>
+</html>

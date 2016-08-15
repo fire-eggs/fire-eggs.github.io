@@ -1216,9 +1216,24 @@ Produced: 8/15/2016 4:16:19 PM<br/>
 <td class="TextItemSame Wrap">|</td>
 </tr>
 <tr class="SectionBegin">
-<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">[</span> MAR<span class="TextSegSigDiff">L</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">MARS</span> <span class="TextSegSigDiff">]</span> [Y|&lt;NULL&gt;] {1:1}</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
 <td class="AlignCenter Wrap">&lt;&gt;</td>
-<td class="TextItemSigDiffMod Wrap">n MAR<span class="TextSegSigDiff">R</span> [Y|&lt;NULL&gt;] {1:1}</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">MARR</span> <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> <span class="TextSegSigDiff">{1:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;FAMILY_EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
+</tr>
+<tr class="SectionMiddle">
+<td class="TextItemSigDiffMod Wrap">n [ MARL | MARS ] <span class="TextSegSigDiff">[Y|&lt;NULL&gt;]</span> {1:1}</td>
+<td class="AlignCenter Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">n [ MARL | MARS ] {1:1}</td>
 </tr>
 <tr class="SectionEnd">
 <td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
@@ -1231,23 +1246,8 @@ Produced: 8/15/2016 4:16:19 PM<br/>
 <td class="TextItemSame Wrap">|</td>
 </tr>
 <tr class="SectionBegin">
-<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">EVEN</span> {1:1}</td>
+<td class="TextItemSame Wrap">&nbsp;</td>
 <td class="AlignCenter Wrap">&lt;&gt;</td>
-<td class="TextItemSigDiffMod Wrap">n <span class="TextSegSigDiff">[</span> <span class="TextSegSigDiff">MARL</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">MARS</span> <span class="TextSegSigDiff">]</span> {1:1}</td>
-</tr>
-<tr class="SectionMiddle">
-<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
-<td class="AlignCenter Wrap">&nbsp;</td>
-<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">FAMILY_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
-</tr>
-<tr class="SectionMiddle">
-<td class="TextItemSame Wrap">&nbsp;</td>
-<td class="AlignCenter Wrap">&nbsp;</td>
-<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
-</tr>
-<tr class="SectionMiddle">
-<td class="TextItemSame Wrap">&nbsp;</td>
-<td class="AlignCenter Wrap">&nbsp;</td>
 <td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">RESI</span></td>
 </tr>
 <tr class="SectionMiddle">
@@ -1261,14 +1261,14 @@ Produced: 8/15/2016 4:16:19 PM<br/>
 <td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">|</span></td>
 </tr>
 <tr class="SectionMiddle">
-<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">n EVEN {1:1}</td>
 <td class="AlignCenter Wrap">&nbsp;</td>
-<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">n</span> <span class="TextSegSigDiff">EVEN</span> <span class="TextSegSigDiff">[&lt;EVENT_DESCRIPTOR&gt;</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">&lt;NULL&gt;]</span>&nbsp; <span class="TextSegSigDiff">{1:1}</span></td>
+<td class="TextItemSigDiffMod Wrap">n EVEN <span class="TextSegSigDiff">[&lt;EVENT_DESCRIPTOR&gt;</span> <span class="TextSegSigDiff">|</span> <span class="TextSegSigDiff">&lt;NULL&gt;]</span>&nbsp; {1:1}</td>
 </tr>
 <tr class="SectionEnd">
-<td class="TextItemSame Wrap">&nbsp;</td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;EVENT_DETAIL&gt;&gt; {0:1}</td>
 <td class="AlignCenter Wrap">&nbsp;</td>
-<td class="TextItemSigRightMod Wrap"><span class="TextSegSigDiff">+1</span> <span class="TextSegSigDiff">&lt;&lt;FAMILY_EVENT_DETAIL&gt;&gt;</span> <span class="TextSegSigDiff">{0:1}</span></td>
+<td class="TextItemSigDiffMod Wrap">+1 &lt;&lt;<span class="TextSegSigDiff">FAMILY_</span>EVENT_DETAIL&gt;&gt; {0:1}</td>
 </tr>
 <tr class="SectionBegin">
 <td class="TextItemSame Wrap">]</td>
@@ -2295,6 +2295,7 @@ Produced: 8/15/2016 4:16:19 PM<br/>
 <td class="AlignCenter Wrap">&nbsp;</td>
 <td class="TextItemSame Wrap">+1 &lt;&lt;NOTE_STRUCTURE&gt;&gt; {0:M}</td>
 </tr>
+
 </tbody>
 </table>
 <br/>

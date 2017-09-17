@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fire-eggs.GitHub.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>A Dilemma: HTML vs GDI</title>
+  </head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
+          <h1 id="project_title">A Dilemma: HTML vs GDI</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+      <h3>Genealogical Reporting</h3>
+<p>      
+For my YAGP project, I want to provide report capabilities.
+YAGP is for genealogical research, so reports could include
+pedigree charts, descendant charts, fan charts, family group 
+sheets, and tables of people, locations, marriages, etc. 
+Reports need to be viewable, print/preview-able, ideally 
+customizable, and possibly exported.
+<p>
+My first attempt at a "visually interesting" report was the
+individual pedigree. I implemented four-generation and five-
+generation variants using GDI+, a <code>PictureBox</code>, and drawing to
+a Document for print/preview. A screen shot can be seen below.
+<p>
+While researching ways to implement the "Family Group" report, 
+I discovered Microsoft's <code>WebBrowser</code> control. Said control 
+allows displaying a web page in the application. Said web page 
+can be a URL from the Interwebs, or in my case, HTML generated 
+by the application.
+<p>
+Screen shots are below for the current iteration of the family
+group report, and a 4-generation pedigree. I haven't got very
+far with the 5-generation HTML pedigree yet. Both are implemented
+using the HTML TABLE, with some CSS to draw lines.
+
+<h3>So What's the Dilemma?</h3>
+<p>
+This is a crossroads point for me. For the desktop, I'm convinced
+that Windows has won and Linux/Mac are low priority. Mono support
+is now a lower priority, with WINE as a possible cross-platform
+solution. On the other hand, using HTML opens up the possibility 
+of going the web route: web server or web site generation. Maybe
+even Mobile?
+<p>
+I started looking into HTML because I was unhappy at the available
+choices for print/previewing WinForm grids. Stumbling into the
+WebBrowser control suggested HTML Tables, and the control provides
+the print/preview solution.
+<p>
+HTML isn't "natural" to me - I spend a lot of time with Google
+to find details on tags and css. But I also recall a lot of 
+struggle getting the GDI pedigree "just right", researching 
+tricks for GetTextSize, and no easy way to extend it with 
+additional details (e.g. dropping occuption, adding military 
+service, etc). I still need to do work to add said support to 
+the HTML generation, but the HTML table takes care of the 
+resizing etc.
+<p>
+A 'big question' for me is how to draw graphics in a web page,
+initially for fan charts. Another one is how to navigate by
+clicking on the HTML (without adding hyperlinks or javascript).
+At least for tables, pedigrees and family groups, HTML is a
+very good solution.
+
+<h3>Pros and Cons</h3>
+<p>
+Here are some of the pros and cons for each approach which I've
+considered. Your needs and priorities may vary.
+
+<i>GDI+ Pros:</i>
+<ul>
+<li>Complete control over appearance</li>
+<li>Works in Mono (?)</li>
+<li>Can use any system-installed font</li>
+<li>Easy to navigate by clicking on the chart</li>
+<li>Known process for graphics (e.g. fan chart)</li>
+</ul>
+
+<i>GDI+ Cons:</i>
+<ul>
+<li>Coding required for additional customization</li>
+<li>Difficult to adjust for changes in data size/amount</li>
+<li>Additional coding for multi-page print/preview</li>
+<li>Difficult/limited export</li>
+</ul>
+
+<i>WebBrowser Pros:</i>
+<ul>
+<li>Automatically adjusts for changes in data size/amount</li>
+<li>Built-in print/preview support with options</li>
+<li>Could export to HTML / generate web site</li>
+<li>Tweaking CSS provides some easy customization</li>
+<li>In theory, user-customization by editing css/html</li>
+</ul>
+
+<i>WebBrowser Cons:<i>
+<ul>
+<li>Uses IE: some limitations or IE specific HTML required.</li>
+<li>Effectively limited to web-friendly fonts.</li>
+<li>Uncertain if can 'remember' print options</li>
+<li>Alternative control required for Mono; status uncertain</li>
+<li>Unknown: drawing graphics (e.g. fan chart)</li>
+<li>Unknown: navigation by clicking in the chart</li>
+</ul>
+
+<h3>Screen Shots</h3>
+<p>
+Not shown for the HTML is how the font family or font size
+can easily be selected. Also not shown is the grey and green
+themes. Neither of these options are available for the GDI
+version ...
+
+<figure>
+    <IMG alt="gdi_ped4" src="../images/cap_4gen_pedigree.PNG">
+    <figcaption>4-Gen Pedigree drawn with GDI+</figcaption>
+</figure>
+<p>
+<figure>
+    <IMG alt="html_ped4" src="../images/cap_4gen_ped_html.png">
+    <figcaption>4-Gen Pedigree drawn with HTML</figcaption>
+</figure>
+<p>
+<figure>
+    <IMG alt="html_fam" src="../images/cap_fam_group_html.png">
+    <figcaption>Family Group report drawn with HTML</figcaption>
+</figure>
+
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+</body>
+</html>

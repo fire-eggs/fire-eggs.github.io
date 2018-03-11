@@ -1,0 +1,59 @@
+
+<h2 id="a-lesson-in-using-the-right-tools-and-humility">A Lesson in Using the Right Tools … and Humility!</h2>
+
+<p>Playing with an open source disk indexer. It looked like <br>
+it had potential, except it was too slow. Too slow to read the disk, <br>
+and too slow to restore the “database”.</p>
+
+<p><strong>Too Slow to Read the Disc</strong></p>
+
+<p>It was using the .NET <code>DirectoryInfo()</code> methods to read the disk. I  <br>
+know from experience this is very slow, so I used Interop to invoke <br>
+<code>FindFirstFileW</code> / <code>FindNextFile</code>. Much better!</p>
+
+<p><strong>Too slow to restore the “database”</strong></p>
+
+<p>Now, why was the original taking so long to restore its “database”?  <br>
+Digging into the code I determined the “database” was a simple  <br>
+serialization of the objects using <code>BinaryFormatter</code>. Google-sensei  <br>
+repeatedly said that <code>BinaryFormatter</code> serialization was <br>
+slow, especially on restore.</p>
+
+<p>I attempted using some other serialization libraries (Wire, <br>
+protobuf, JIL) but couldn’t get them to work easily. I decided <br>
+this was my opportunity to try SQLite.</p>
+
+<p>First attempt is very quick-and-dirty. No ORM: hand-built SQL  <br>
+strings, manually escaping single quotes, etc. A couple of  <br>
+iterations over the POCOs, and I had something basically working.</p>
+
+<p>So tried a simple disc. Time to read: instant. Time to store: <br>
+instant. Time to restore: instant! Excellent!</p>
+
+<p>Tried a more complex disc. Time to read: pretty fast. Time to <br>
+store: a few seconds, pretty fast. Time to restore: wait, what??? <br>
+Waaaay slow. Much slower than the original!!</p>
+
+<p><strong>SQLite is Slower???</strong></p>
+
+<p>Here is the lesson in humility. I simply assumed a SQLite version <br>
+would implicitly be faster. I also used the wrong tool: I wasted <br>
+some time running VS Profiler, which merely confirmed the database  <br>
+reads were the problem.</p>
+
+<p>Google-sensei had a lot to say about <code>INSERT</code> performance, but that  <br>
+wasn’t the problem. Long story short, it eventually occurred to me <br>
+that my select statements had a <code>WHERE</code> clause involving an un-indexed <br>
+column.</p>
+
+<p>A couple of indices later and viola! Much better!</p>
+
+<p><strong>Final Numbers</strong></p>
+
+<p>Read     Write     Restore       DB Size <br>
+Original: 180       10         420         174,000K <br>
+SQLite, no indices: 60        20         ?? &gt; 900!! <br>
+SQLite, indices: 60        20         15           60,000K</p>
+
+<p>Running both versions, against the same disk, under the same  <br>
+circumstances. About 760,000 POCOs involved.</p>

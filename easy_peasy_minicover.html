@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fire-eggs.GitHub.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Numpy mean() Weirdness</title>
+  </head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
+          <h1 id="project_title">'Easy-peasy' Coveralls / .NET CORE integration with minicover</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<p>I recently set up <a href="https://travis-ci.org">Travis CI</a> integration for YAGP
+<a href="https://github.com/fire-eggs/YAGP">YAGP</a>.
+This included both the build and NUnit testing for the
+SharpGedParser project.</p>
+
+<p>Next I wanted test coverage results integration with
+<a href="https://coveralls.io">Coveralls</a> - namely to show as a badge on Github.
+With some fumbling and dead-end research, I did get this
+working with <a href="https://github.com/lucaslorentz/minicover>Minicover</a>.</p>
+
+<p>At some point, minicover shipped coveralls
+reporting and this fact doesn't seem to have percolated
+to the rest of the web yet.</p>
+
+<p>The end result is pretty simple and I hoped you might avoid
+some wasted research if I wrote it up here.<p>
+
+<ol>
+<li>
+The first step is get your build working with Travis and
+sign up with Coveralls.
+</li>
+<li>
+Read the minicover README and a blog entry at 
+<a href="https://automationrhapsody.com/net-core-code-coverage-linux-
+minicover/">Automation Rhapsody</a>. These were a big step forward for me getting this to 
+work.
+</li>
+<li>
+Create a minicover project in your solution. This project
+has no code, only a reference to minicover. This is the 
+recommended approach and allows 'dotnet restore' to fetch 
+minicover automagically. See the blog above.
+</li>
+<li>
+<p>
+In your travis.yml, use minicover to instrument the dll(s)
+under test, and point minicover at the pertinent sources. I
+have also excluded the test sources to remove them from the
+coverage stats. 
+</p><p>
+Note the current directory structure is as follows:
+root:
+<pre>
+    TravisCore.sln
+   +minicover
+       minicover.csproj
+   +TravisParse
+       TravisParse.csproj
+</pre>
+</p>
+<p>
+Here is the relevant YML for YAGP:
+
+<pre>
+script:
+    # Build the solution!
+    - dotnet build
+    # Minicover project below current working directory
+    - cd minicover
+    # my tests are currently merged in with the code; you
+    # might have a separate test assembly. Note the 
+    # exclusion of the test sources from coverage.
+    - dotnet minicover instrument --workdir ../ --assemblies 
+      TravisParse/**/bin/**/TravisParse.dll --sources 
+      SharpGedParse/SharpGedParser/**/*.cs --exclude-sources 
+      SharpGedParse/SharpGedParser/**/Tests/*.cs
+    - dotnet minicover reset
+    - cd ..
+    # Run the tests!
+    - dotnet test --no-build ./TravisParse/TravisParse.csproj
+</pre>
+</p>
+</li>
+
+<li>
+Use minicover to report results to Coveralls!
+<p>
+Here is the relevant YML for YAGP:
+
+<pre>
+script:
+...
+    # Run the tests!
+    - dotnet test --no-build ./TravisParse/TravisParse.csproj
+    - cd minicover
+    # report coverage results to Coveralls!
+    - dotnet minicover coverallsreport --root-path ../ --workdir 
+
+../ --service-name "travis-ci" --service-job-id "$TRAVIS_JOB_ID"
+</pre>
+</p>
+</li>
+</ol>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+</body>
+</html>

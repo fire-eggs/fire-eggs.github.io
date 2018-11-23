@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fire-eggs.GitHub.io : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Upgrading Geany on Raspian Jessie</title>
+  </head>
+
+<body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
+          <h1 id="project_title">Upgrading Geany on Raspian Jessie</h1>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+<p>
+I wanted to upgrade the Geany editor on my Raspberry Pi. I am
+currently running Raspian Jessie, and the installed Geany is 
+at V1.24. At this time, the latest Geany is at V1.33.</P>
+
+<p>My attempt to add the geany-dev repository for apt failed. So
+I investigated upgrading Geany from source. Alas, the Geany 
+source upgrade instructions are a little opaque: they assume 
+their requirements are already installed, and don't explain the
+detailed steps required to satisfy their requirements. See
+<a href="https://www.geany.org/manual/index.html#installation">here</a>.
+</p>
+
+<p>With some searching and digging, plus a couple of failed
+install attempts, I was able to determine the following
+packages needed to be installed for the Geany install:</p>
+
+<pre>
+sudo apt-get install libglib2.0-dev libgtk2.0-dev intltool
+</pre>
+
+<p>The first two are required to build the Geany source; the
+last for the Geany install.</p>
+
+<p>Once the above packages are in place, this is the set of
+shell commands I used successfully to build and install
+Geany V1.33:</p>
+
+<pre>
+cd /tmp
+wget https://download.geany.org/geany-1.33.tar.gz
+tar xvf geany-1.33.tar.gz
+cd geany-1.33
+./configure
+make
+sudo make install
+</pre>
+
+<p>Now the Raspian menu entry for Geany invokes Geany V1.33!</p>
+	  
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Back to <a href="https://fire-eggs.github.io/">fire-eggs</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+</body>
+</html>

@@ -6,7 +6,7 @@
     <meta name="description" content="Fire-eggs.GitHub.io : ">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <title>How to Change the Font for GRAMPS on Windows</title>
+    <title>How to Change the Font for Gramps on Windows</title>
 
   <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
@@ -302,7 +302,7 @@ img {
     <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/fire-eggs">View on GitHub</a>
-          <h1 id="project_title">How to Change the Font for GRAMPS on Windows</h1>
+          <h1 id="project_title">How to Change the Font for Gramps on Windows</h1>
         </header>
     </div>
 
@@ -312,10 +312,10 @@ img {
 
 
 <p><a href="#thefix">Skip the intro</a></p>
-<p><a href="https://gramps-project.org/introduction-WP/"><strong>GRAMPS</strong></a> is a Free / Open-Source Software (FOSS) program for genealogical research. It runs on Linux, Mac OSX, and Windows.</p>
-<p>For Windows users like myself who prefer a larger font in applications, GRAMPS has a serious limitation: there is no font customization! The font used is pretty small.  In at least <a href="http://www.pclinuxos.com/forum/index.php?topic=145956.0">one case</a>, a user has uninstalled GRAMPS because of this limitation. </p>
-<p>GRAMPS uses a cross-platform user interface library called GTK. On Linux, properties of GTK, such as the theme or font, are modified by the operating system. There is no mechanism on Windows to fix this.
-GTK doesn't respect the Windows Display configurations. In addition, the solution to the problem for GRAMPS V4.x no longer works with GRAMPS 5!</p>
+<p><a href="https://gramps-project.org/introduction-WP/"><strong>Gramps</strong></a> is a Free / Open-Source Software (FOSS) program for genealogical research. It runs on Linux, Mac OSX, and Windows.</p>
+<p>For Windows users like myself who prefer a larger font in applications, Gramps has a serious limitation: there is no font customization! The font used is pretty small.  In at least <a href="http://www.pclinuxos.com/forum/index.php?topic=145956.0">one case</a>, a user has uninstalled Gramps because of this limitation. </p>
+<p>Gramps uses a cross-platform user interface library called GTK. On Linux, properties of GTK, such as the theme or font, are modified by the operating system. There is no mechanism on Windows to fix this.
+GTK doesn't respect the Windows Display configurations. In addition, the solution to the problem for Gramps V4.x no longer works with Gramps 5!</p>
 <p>After research and head-banging, I have been able to find a solution, allowing me to see this useful program comfortably!</p>
 <h3><a id="thefix"></a>The Fix</h3>
 <p>My apologies, this is a manual process with a few detailed steps. If someone can turn this into a batch file or powershell script, it would be wonderful ...</p>
@@ -323,18 +323,18 @@ GTK doesn't respect the Windows Display configurations. In addition, the solutio
 <ul>
 <li>Install a <em>theme</em></li>
 <li>Modify the theme</li>
-<li>Force GRAMPS to use the theme</li>
+<li>Force Gramps to use the theme</li>
 </ul>
-<p>By installing a theme, we can modify the font settings to our liking, <strong>and</strong> change the appearance of GRAMPS! E.g. if you prefer a &quot;dark&quot; appearance, you can now change GRAMPS to match!</p>
+<p>By installing a theme, we can modify the font settings to our liking, <strong>and</strong> change the appearance of Gramps! E.g. if you prefer a &quot;dark&quot; appearance, you can now change Gramps to match!</p>
 <p><strong>Note</strong> that administrator rights are required for many steps!</p>
 <h4>1. Add Theme Support</h4>
-<p>GRAMPS installed out-of-the-box doesn't have theme support. To add theme support, we'll:</p>
+<p>Gramps installed out-of-the-box doesn't have theme support. To add theme support, we'll:</p>
 <ol>
-<li>Find your GRAMPS install folder. At this time, the folder is likely to be <code>C:\Program Files\GrampsAIO64-5.0.1</code> (as GRAMPS V5.0.1 is the current GRAMPS release).</li>
+<li>Find your Gramps install folder. At this time, the folder is likely to be <code>C:\Program Files\GrampsAIO64-5.0.1</code> (as Gramps V5.0.1 is the current Gramps release).</li>
 <li>Add a folder called <code>themes</code> to the <code>share</code> folder. I.e. <code>C:\Program Files\GrampsAIO64-5.0.1\share\themes</code></li>
 </ol>
 <h4>2. Get a Theme</h4>
-<p>GTK themes are available on the Internet. The &quot;built-in&quot; theme for GTK/GRAMPS is called &quot;Adwaita&quot;. Many themes can be downloaded from <a href="https://www.gnome-look.org">gnome-look</a> and other places. You might explore and find a different theme which appeals to you; I provide a copy of one that looks fairly close to the original below.</p>
+<p>GTK themes are available on the Internet. The &quot;built-in&quot; theme for GTK/Gramps is called &quot;Adwaita&quot;. Many themes can be downloaded from <a href="https://www.gnome-look.org">gnome-look</a> and other places. You might explore and find a different theme which appeals to you; I provide a copy of one that looks fairly close to the original below.</p>
 <p>Unpack the archive file (usually a <code>.tar.gz</code> file) with <a href="https://www.7-zip.org/">7-zip</a> or other program. You want to unpack it into the <code>themes</code> folder you created earlier. You probably want to give it your own name, e.g. <code>Personal</code>. So you would have a folder like: <code>C:\Program Files\GrampsAIO64-5.0.1\share\themes\Personal</code></p>
 <h4>3. Modify the Theme / Choose your Font</h4>
 <p>In your new <code>Personal</code> theme folder you should find a folder called <code>gtk-3.0</code>. Inside <em>that</em> folder will be a file called <code>gtk.css</code>. This is the file we need to modify.</p>
@@ -347,14 +347,14 @@ GTK doesn't respect the Windows Display configurations. In addition, the solutio
 <p>This is when you get to choose your font, and what size! </p>
 <p>You can use any font installed on your system. I chose &quot;Segoe UI&quot; but you can use &quot;Arial&quot;, &quot;Times New Roman&quot;, etc. <strong>Note</strong> the font name should be enclosed in double-quotes as shown, and <em>must</em> match the name of the font as installed. Use &quot;View Installed Fonts&quot; or &quot;Fonts Preview&quot; in Control Panel to verify the name.</p>
 <p>There are several ways to specify the font size. In the example above, I used <code>103%</code> to get a slightly-larger font. You can also use points, such as <code>12pt</code>. You may need to try a couple of variants to find a comfortable font size.</p>
-<h4>4. Force GRAMPS to Use the New Theme</h4>
-<p>Under the GRAMPS install folder you need to find the <code>etc\gtk-3.0</code>
+<h4>4. Force Gramps to Use the New Theme</h4>
+<p>Under the Gramps install folder you need to find the <code>etc\gtk-3.0</code>
 folder, e.g. <code>C:\Program Files\GrampsAIO64-5.0.1\etc\gtk-3.0</code>. In
 <em>that</em> folder should be a file called <code>settings.ini</code>.</p>
 <p>Edit <code>settings.ini</code> with <code>WordPad</code> and 'Run as Administrator'.
 Add the line: <code>gtk-theme-name=Personal</code>, where 'Personal' is the name of the theme you decided on back in step 2.  Save the file.</p>
 <h4>5. Try it out!</h4>
-<p>Now run GRAMPS. You should see your changed font, size and theme!</p>
+<p>Now run Gramps. You should see your changed font, size and theme!</p>
 <p>Here is a copy of the &quot;Adwaita-like&quot; theme I downloaded and modified: <a href="../images/Adwaita2.zip">tweaked theme</a>. I've re-packaged it as a ZIP file for ease of unpacking. The original is at <a href="https://www.gnome-look.org/p/1013073/">Adwaita</a>.</p>
 <p>Here are my before-and-after snippets, with &quot;Segoe UI&quot; at &quot;103%&quot;.</p>
 <p>Before:</p>

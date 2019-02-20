@@ -332,7 +332,7 @@ may have problems loading the file in one go.</li>
 <li>Looking at the HTML in the content file, it has been packaged as
 a single &lt;P&gt; (paragraph) tag, with the book paragraphs split using
 the &lt;br&gt; (break) tag. A simple ebook reader (possibly relying on the
-Android webkit library) will need to parse the <i>entire</i> HTML file
+Android webkit library) will need to parse the <u>entire</u> HTML file
 before any text can be displayed!</li>
 <li>The file has not been packaged according to the recommended EPUB2
 layout, with distinct META-INF and OEBPS sub-folders.</li>
@@ -357,7 +357,7 @@ minimal disruption in the text flow!
 </p><p>
 The program can be found in my <a href="https://github.com/fire-eggs/epub_fixer">epub_fixer</a> repository.
 </p><p>
-<b>Features:</b>
+<h4>Features:</h4>
 </p><p>
 <ol>
 <li>Breaks the single HTML file into many small chunks, arbitrarily
@@ -368,25 +368,27 @@ this easily and display text quickly.
 <li>The epub metadata is updated to use the changed content files.
 </ol>
 </p><p>
-<b>Known Limitations:</b>
+<h4>Known Limitations:</h4>
 </p><p>
+<ul>
 <li>Only these "problem" books can be handled right now. If there isn't
-a single <code>Chapter01.html</code> file, the program will quit.
+a single <code>Chapter01.html</code> file, the program will quit.</li>
 <li>Should a "problem" book have a table of contents, it probably won't
-work with the "fixed" book.
+work with the "fixed" book.</li>
 <li>Depending on the reader program, there may be "arbitrary" page breaks.
-These occur at "chunk" boundaries.
+These occur at "chunk" boundaries.</li>
 <li>The program does not unpack / pack the epub file. See the suggested
-usage below for details.
+usage below for details.</li>
 <li>The resulting "fixed" epub file is a bit larger. This is because each
 "chunk" needs a reference in the .NCX and .OPF files, and each "chunk"
-needs a copy of the full HTML header and trailer.
+needs a copy of the full HTML header and trailer.</li>
 <li>The "fixed" book is still in the same EPUB2 format with no change to
-the packaging.
+the packaging.</li>
 <li>The program is currently .NET framework based. It could be ported to
-.NET CORE / other platforms.
+.NET CORE / other platforms.</li>
+</ul>
 </p><p>
-<b>Suggested usage:</b>
+<h4>Suggested usage:</h4>
 </p><p>
 The following DOS script will process a single epub file. It requires
 the filename as a command line parameter without the extension. The

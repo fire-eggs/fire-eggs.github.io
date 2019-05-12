@@ -57,8 +57,8 @@ Eine einfache HTML Tabelle.
     \<th>Fourth</th>  
   \</tr>  
   \<tr>  
-    \<td>  Content Cell</td>  
-    \<td>  Content Cell</td>  
+    \<td>  Content Cell </td>  
+    \<td>  Content Cell\</td>  
     \<td>  Content Cell</td>  
     \<td>  Content Cell</td>  
   \</tr>  

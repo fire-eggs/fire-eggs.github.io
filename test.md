@@ -27,9 +27,8 @@ Das lateinische Schriftsystem mit dem die chinesische Sprache mit lateinischen B
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom">Pynyin</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom">traditionell</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom">simpel</td>
-<td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom"><p style="text-align: center;"><p>Zeichen</p>
-</td>
- 
+<td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom"><p style="text-align: center;"><p>Zeichen
+</p></td>
 </tr>
 <tr style="height: 21px;">
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;">1</td>

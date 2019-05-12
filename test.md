@@ -27,7 +27,8 @@ Das lateinische Schriftsystem mit dem die chinesische Sprache mit lateinischen B
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom">Pynyin</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom">traditionell</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom">simpel</td>
-<td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom"><p style="text-align: center;">Zeichen</td>
+<td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: solid 1.0pt; border-right: none;" valign="bottom"><p style="text-align: center;">Zeichen
+</td>
 </tr>
 <tr style="height: 21px;">
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;">1</td>
@@ -35,7 +36,8 @@ Das lateinische Schriftsystem mit dem die chinesische Sprache mit lateinischen B
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;" valign="bottom">dì yī shēng</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;" valign="bottom">第一聲</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;" valign="bottom">第一声</td>
-<td style="padding-left: 5px; padding-right: 5px; border: none;" valign="bottom"><p style="text-align: center;">¯ </td></tr>
+<td style="padding-left: 5px; padding-right: 5px; border: none;" valign="bottom"><p style="text-align: center;">¯ </td>
+</tr>
 <tr style="height: 21px;">
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;">2</td>
 <td style="padding-left: 5px; padding-right: 5px; border-top: none; border-left: none; border-bottom: none; border-right: solid 0.5pt;" valign="bottom"><a href="https://de.wikipedia.org/wiki/T%C3%B6ne_des_Hochchinesischen">mittel nach hoch</a></td>
